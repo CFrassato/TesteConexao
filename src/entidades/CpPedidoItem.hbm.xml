@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpPedidoItem" optimistic-lock="version" table="CP_PEDIDO_ITEM">
+    <id name="pedidoItemId" type="int">
+      <column name="PEDIDO_ITEM_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpMaterial" fetch="select" name="cpMaterial">
+      <column name="CODIGO" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMedida" fetch="select" name="cpMedida">
+      <column name="MEDIDA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpPedido" fetch="select" name="cpPedido">
+      <column name="PEDIDO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="item" type="int">
+      <column name="ITEM" not-null="true"/>
+    </property>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="unid" type="string">
+      <column length="5" name="UNID"/>
+    </property>
+    <property name="compl" type="string">
+      <column length="0" name="COMPL"/>
+    </property>
+    <property name="prUnit" type="big_decimal">
+      <column name="PR_UNIT" not-null="true" precision="15" scale="5"/>
+    </property>
+    <property name="prTotal" type="big_decimal">
+      <column name="PR_TOTAL" not-null="true" precision="18"/>
+    </property>
+    <property name="despesaId" type="string">
+      <column length="53" name="DESPESA_ID"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolicitacaoItems" table="CP_SOLICITACAO_ITEM">
+      <key>
+        <column name="PEDIDO_ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSolicitacaoItem"/>
+    </set>
+  </class>
+</hibernate-mapping>

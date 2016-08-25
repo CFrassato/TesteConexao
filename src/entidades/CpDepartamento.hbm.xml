@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpDepartamento" optimistic-lock="version" table="CP_DEPARTAMENTO">
+    <composite-id class="entidades.CpDepartamentoId" name="id">
+      <key-property name="secretariaId" type="string">
+        <column length="7" name="SECRETARIA_ID"/>
+      </key-property>
+      <key-property name="departamentoId" type="int">
+        <column name="DEPARTAMENTO_ID"/>
+      </key-property>
+    </composite-id>
+    <property name="departamento" type="string">
+      <column length="45" name="DEPARTAMENTO" not-null="true"/>
+    </property>
+    <property name="departamentoExt" type="java.lang.Integer">
+      <column name="DEPARTAMENTO_EXT"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolicitacaos" table="CP_SOLICITACAO">
+      <key>
+        <column length="7" name="SECRETARIA_ID" not-null="true"/>
+        <column name="DEPARTAMENTO_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSolicitacao"/>
+    </set>
+  </class>
+</hibernate-mapping>

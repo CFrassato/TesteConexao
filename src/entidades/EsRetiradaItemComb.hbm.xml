@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsRetiradaItemComb" optimistic-lock="version" table="ES_RETIRADA_ITEM_COMB">
+    <id name="retItemCombId" type="int">
+      <column name="RET_ITEM_COMB_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.EsRetiradaItem" fetch="select" name="esRetiradaItem">
+      <column name="RET_ITEM_ID" not-null="true"/>
+    </many-to-one>
+    <property name="data" type="date">
+      <column length="10" name="DATA" not-null="true"/>
+    </property>
+    <property name="requisicao" type="int">
+      <column name="REQUISICAO" not-null="true"/>
+    </property>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="veiculoId" type="int">
+      <column name="VEICULO_ID" not-null="true"/>
+    </property>
+    <property name="motoristaId" type="java.lang.Integer">
+      <column name="MOTORISTA_ID"/>
+    </property>
+    <property name="kilometragem" type="java.lang.Integer">
+      <column name="KILOMETRAGEM"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="tipo" type="string">
+      <column length="1" name="TIPO"/>
+    </property>
+    <property name="hodometro" type="int">
+      <column name="HODOMETRO" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

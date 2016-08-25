@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsLancto" optimistic-lock="version" table="ES_LANCTO">
+    <id name="codigoId" type="int">
+      <column name="CODIGO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpSecretaria" fetch="select" name="cpSecretariaBySecretariaIddestino">
+      <column length="7" name="SECRETARIA_IDDESTINO"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpSecretaria" fetch="select" name="cpSecretariaBySecretariaIdorigem">
+      <column length="7" name="SECRETARIA_IDORIGEM"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsDeposito" fetch="select" name="esDepositoByDepositoIddestino">
+      <column name="DEPOSITO_IDDESTINO"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsDeposito" fetch="select" name="esDepositoByDepositoIdorigem">
+      <column name="DEPOSITO_IDORIGEM"/>
+    </many-to-one>
+    <property name="dtamovimento" type="date">
+      <column length="10" name="DTAMOVIMENTO"/>
+    </property>
+    <property name="tipomovimento" type="java.lang.Character">
+      <column length="1" name="TIPOMOVIMENTO"/>
+    </property>
+    <property name="tipo" type="java.lang.Integer">
+      <column name="TIPO"/>
+    </property>
+    <property name="credorId" type="java.lang.Integer">
+      <column name="CREDOR_ID"/>
+    </property>
+    <property name="solicitante" type="string">
+      <column length="40" name="SOLICITANTE"/>
+    </property>
+    <property name="motivo" type="string">
+      <column length="40" name="MOTIVO"/>
+    </property>
+    <property name="observacao" type="string">
+      <column length="40" name="OBSERVACAO"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

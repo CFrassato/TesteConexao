@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsComissaoInventario" optimistic-lock="version" table="ES_COMISSAO_INVENTARIO">
+    <id name="comissaoId" type="int">
+      <column name="COMISSAO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="dtPortaria1" type="date">
+      <column length="10" name="DT_PORTARIA1"/>
+    </property>
+    <property name="dtPortaria2" type="date">
+      <column length="10" name="DT_PORTARIA2"/>
+    </property>
+    <property name="nrPortaria" type="string">
+      <column length="16" name="NR_PORTARIA"/>
+    </property>
+    <property name="arqTxt" type="string">
+      <column length="25" name="ARQ_TXT"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarios" table="ES_INVENTARIO">
+      <key>
+        <column name="COMISSAO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsInventario"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esProcessoInventarios" table="ES_PROCESSO_INVENTARIO">
+      <key>
+        <column name="COMISSAO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsProcessoInventario"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esComissaoDepositos" table="ES_COMISSAO_DEPOSITO">
+      <key>
+        <column name="COMISSAO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsComissaoDeposito"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esComInventarioMembros" table="ES_COM_INVENTARIO_MEMBRO">
+      <key>
+        <column name="COMISSAO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsComInventarioMembro"/>
+    </set>
+  </class>
+</hibernate-mapping>

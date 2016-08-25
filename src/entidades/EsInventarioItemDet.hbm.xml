@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsInventarioItemDet" optimistic-lock="version" table="ES_INVENTARIO_ITEM_DET">
+    <id name="inventarioItemDetId" type="int">
+      <column name="INVENTARIO_ITEM_DET_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpSecretaria" fetch="select" name="cpSecretaria">
+      <column length="7" name="SECRETARIA_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsInventarioItem" fetch="select" name="esInventarioItem">
+      <column name="INVENTARIO_ITEM_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gusuario" fetch="select" name="gusuario">
+      <column length="5" name="GUSUARIO_ID"/>
+    </many-to-one>
+    <property name="atividade" type="string">
+      <column length="30" name="ATIVIDADE"/>
+    </property>
+    <property name="ganoIdAtiv" type="java.lang.Integer">
+      <column name="GANO_ID_ATIV"/>
+    </property>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="eos" type="char">
+      <column length="1" name="EOS" not-null="true"/>
+    </property>
+    <property name="recId" type="java.lang.Integer">
+      <column name="REC_ID"/>
+    </property>
+    <property name="retiradaId" type="java.lang.Integer">
+      <column name="RETIRADA_ID"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="materialNatDespId" type="java.lang.Integer">
+      <column name="MATERIAL_NAT_DESP_ID"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarioItemLotes" table="ES_INVENTARIO_ITEM_LOTE">
+      <key>
+        <column name="INVENTARIO_ITEM_DET_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsInventarioItemLote"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.Glograd" optimistic-lock="version" table="GLOGRAD">
+    <id name="glogradId" type="string">
+      <column length="6" name="GLOGRAD_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="lograd" type="string">
+      <column length="150" name="LOGRAD" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="tipo" type="string">
+      <column length="4" name="TIPO" not-null="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esPacientes" table="ES_PACIENTE">
+      <key>
+        <column length="6" name="GLOGRAD_ID"/>
+      </key>
+      <one-to-many class="entidades.EsPaciente"/>
+    </set>
+  </class>
+</hibernate-mapping>

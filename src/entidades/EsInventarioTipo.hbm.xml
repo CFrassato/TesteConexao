@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsInventarioTipo" optimistic-lock="version" table="ES_INVENTARIO_TIPO">
+    <id name="inventarioTipoId" type="int">
+      <column name="INVENTARIO_TIPO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="descricao" type="string">
+      <column length="100" name="DESCRICAO" not-null="true"/>
+    </property>
+    <property name="desativado" type="char">
+      <column length="1" name="DESATIVADO" not-null="true"/>
+    </property>
+    <property name="gusuarioId" type="string">
+      <column length="5" name="GUSUARIO_ID" not-null="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarios" table="ES_INVENTARIO">
+      <key>
+        <column name="INVENTARIO_TIPO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsInventario"/>
+    </set>
+  </class>
+</hibernate-mapping>

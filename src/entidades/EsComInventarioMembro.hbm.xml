@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsComInventarioMembro" optimistic-lock="version" table="ES_COM_INVENTARIO_MEMBRO">
+    <id name="comMembroId" type="int">
+      <column name="COM_MEMBRO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.EsComissaoInventario" fetch="select" name="esComissaoInventario">
+      <column name="COMISSAO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="matricula" type="string">
+      <column length="10" name="MATRICULA"/>
+    </property>
+    <property name="cpf" type="string">
+      <column length="14" name="CPF"/>
+    </property>
+    <property name="nome" type="string">
+      <column length="50" name="NOME"/>
+    </property>
+    <property name="funcao" type="java.lang.Integer">
+      <column name="FUNCAO"/>
+    </property>
+    <property name="tipo" type="java.lang.Integer">
+      <column name="TIPO"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esProcessoInventarios" table="ES_PROCESSO_INVENTARIO">
+      <key>
+        <column name="COM_MEMBRO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsProcessoInventario"/>
+    </set>
+  </class>
+</hibernate-mapping>

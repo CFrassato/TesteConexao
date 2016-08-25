@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsInventarioItemLote" optimistic-lock="version" table="ES_INVENTARIO_ITEM_LOTE">
+    <id name="inventarioItemLoteId" type="int">
+      <column name="INVENTARIO_ITEM_LOTE_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpCcusto" fetch="select" name="cpCcusto">
+      <column name="CCUSTO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsInventarioItemDet" fetch="select" name="esInventarioItemDet">
+      <column name="INVENTARIO_ITEM_DET_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsLoteRemedio" fetch="select" name="esLoteRemedio">
+      <column name="LOTE_REMEDIO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsPaciente" fetch="select" name="esPaciente">
+      <column name="PACIENTE_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gusuario" fetch="select" name="gusuario">
+      <column length="5" name="GUSUARIO_ID"/>
+    </many-to-one>
+    <property name="lote" type="string">
+      <column length="10" name="LOTE"/>
+    </property>
+    <property name="fabricacao" type="date">
+      <column length="10" name="FABRICACAO"/>
+    </property>
+    <property name="validade" type="date">
+      <column length="10" name="VALIDADE"/>
+    </property>
+    <property name="medicoId" type="string">
+      <column length="6" name="MEDICO_ID"/>
+    </property>
+    <property name="atendenteId" type="string">
+      <column length="6" name="ATENDENTE_ID"/>
+    </property>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

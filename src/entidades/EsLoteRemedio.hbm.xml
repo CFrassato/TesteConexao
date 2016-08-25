@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsLoteRemedio" optimistic-lock="version" table="ES_LOTE_REMEDIO">
+    <id name="loteRemedioId" type="int">
+      <column name="LOTE_REMEDIO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpMaterial" fetch="select" name="cpMaterial">
+      <column name="MATERIAL_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsRecebimentoItem" fetch="select" name="esRecebimentoItem">
+      <column name="REC_ITEM_ID" not-null="true"/>
+    </many-to-one>
+    <property name="lote" type="string">
+      <column length="15" name="LOTE" not-null="true"/>
+    </property>
+    <property name="fabricacao" type="date">
+      <column length="10" name="FABRICACAO"/>
+    </property>
+    <property name="validade" type="date">
+      <column length="10" name="VALIDADE" not-null="true"/>
+    </property>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esLoteRemedioBxes" table="ES_LOTE_REMEDIO_BX">
+      <key>
+        <column name="LOTE_REMEDIO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsLoteRemedioBx"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarioItemLotes" table="ES_INVENTARIO_ITEM_LOTE">
+      <key>
+        <column name="LOTE_REMEDIO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsInventarioItemLote"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsPlanilhaBordoItem" optimistic-lock="version" table="ES_PLANILHA_BORDO_ITEM">
+    <composite-id class="entidades.EsPlanilhaBordoItemId" name="id">
+      <key-property name="planilhaItemId" type="int">
+        <column name="PLANILHA_ITEM_ID"/>
+      </key-property>
+      <key-property name="planilhaId" type="int">
+        <column name="PLANILHA_ID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="entidades.EsPlanilhaBordo" fetch="select" insert="false" name="esPlanilhaBordo" update="false">
+      <column name="PLANILHA_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.FrMotorista" fetch="select" name="frMotorista">
+      <column name="MOTORISTA_ID" not-null="true"/>
+    </many-to-one>
+    <property name="dataSaida" type="date">
+      <column length="10" name="DATA_SAIDA" not-null="true"/>
+    </property>
+    <property name="horaSaida" type="string">
+      <column length="5" name="HORA_SAIDA" not-null="true"/>
+    </property>
+    <property name="quilometroInicial" type="int">
+      <column name="QUILOMETRO_INICIAL" not-null="true"/>
+    </property>
+    <property name="localSaida" type="string">
+      <column length="200" name="LOCAL_SAIDA" not-null="true"/>
+    </property>
+    <property name="destino" type="string">
+      <column length="200" name="DESTINO" not-null="true"/>
+    </property>
+    <property name="dataChegada" type="date">
+      <column length="10" name="DATA_CHEGADA" not-null="true"/>
+    </property>
+    <property name="horaChegada" type="string">
+      <column length="5" name="HORA_CHEGADA" not-null="true"/>
+    </property>
+    <property name="quilometroFinal" type="int">
+      <column name="QUILOMETRO_FINAL" not-null="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="quantCombustivel" type="string">
+      <column length="20" name="QUANT_COMBUSTIVEL"/>
+    </property>
+  </class>
+</hibernate-mapping>

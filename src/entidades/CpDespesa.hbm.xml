@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpDespesa" optimistic-lock="version" table="CP_DESPESA">
+    <composite-id class="entidades.CpDespesaId" name="id">
+      <key-property name="ganoId" type="int">
+        <column name="GANO_ID"/>
+      </key-property>
+      <key-property name="despesaId" type="string">
+        <column length="53" name="DESPESA_ID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="entidades.Gano" fetch="select" insert="false" name="gano" update="false">
+      <column name="GANO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gempresa" fetch="select" name="gempresa">
+      <column name="GEMPRESA_ID" not-null="true"/>
+    </many-to-one>
+    <property name="reduzidoCtaSaldo" type="java.lang.Integer">
+      <column name="REDUZIDO_CTA_SALDO"/>
+    </property>
+    <property name="nome" type="string">
+      <column length="120" name="NOME" not-null="true"/>
+    </property>
+    <property name="conta" type="string">
+      <column length="20" name="CONTA"/>
+    </property>
+    <property name="natDespes" type="string">
+      <column length="10" name="NAT_DESPES"/>
+    </property>
+    <property name="fonte" type="string">
+      <column length="3" name="FONTE"/>
+    </property>
+    <property name="lancar" type="java.lang.Character">
+      <column length="1" name="LANCAR"/>
+    </property>
+    <property name="atividade" type="string">
+      <column length="30" name="ATIVIDADE"/>
+    </property>
+    <property name="despesaExt" type="string">
+      <column length="33" name="DESPESA_EXT"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="fonteDestinacaoId" type="java.lang.Integer">
+      <column name="FONTE_DESTINACAO_ID"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esMaterialEstocados" table="ES_MATERIAL_ESTOCADO">
+      <key>
+        <column name="GANO_ID"/>
+        <column length="53" name="DESPESA_ID"/>
+      </key>
+      <one-to-many class="entidades.EsMaterialEstocado"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpItems" table="CP_ITEM">
+      <key>
+        <column name="GANO_DESP_ID" not-null="true"/>
+        <column length="53" name="DESPESA_ID"/>
+      </key>
+      <one-to-many class="entidades.CpItem"/>
+    </set>
+  </class>
+</hibernate-mapping>

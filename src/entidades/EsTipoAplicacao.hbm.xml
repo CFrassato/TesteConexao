@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsTipoAplicacao" optimistic-lock="version" table="ES_TIPO_APLICACAO">
+    <id name="tipo" type="int">
+      <column name="TIPO"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.TceMtTipoMovimentoMaterial" fetch="select" name="tceMtTipoMovimentoMaterial">
+      <column length="2" name="TMM_CODIGO"/>
+    </many-to-one>
+    <property name="descricao" type="string">
+      <column length="100" name="DESCRICAO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="categoria" type="int">
+      <column name="CATEGORIA" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentos" table="ES_RECEBIMENTO">
+      <key>
+        <column name="TIPO" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimento"/>
+    </set>
+  </class>
+</hibernate-mapping>

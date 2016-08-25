@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpCcusto" optimistic-lock="version" table="CP_CCUSTO">
+    <id name="ccustoId" type="int">
+      <column name="CCUSTO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpTipoCcusto" fetch="select" name="cpTipoCcusto">
+      <column name="TIPO_CCUSTO_ID"/>
+    </many-to-one>
+    <property name="ccusto" type="string">
+      <column length="50" name="CCUSTO" not-null="true" unique="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="responsavel" type="string">
+      <column length="45" name="RESPONSAVEL"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esLoteRemedioBxes" table="ES_LOTE_REMEDIO_BX">
+      <key>
+        <column name="CCUSTO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsLoteRemedioBx"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRequisicaos" table="ES_REQUISICAO">
+      <key>
+        <column name="CCUSTO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRequisicao"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esLoteRemedioBxes_1" table="ES_LOTE_REMEDIO_BX">
+      <key>
+        <column name="CCUSTO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsLoteRemedioBx"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarioItemLotes" table="ES_INVENTARIO_ITEM_LOTE">
+      <key>
+        <column name="CCUSTO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsInventarioItemLote"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicacaoDiretas" table="ES_APLICACAO_DIRETA">
+      <key>
+        <column name="CCUSTO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsAplicacaoDireta"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpRequisis" table="CP_REQUISI">
+      <key>
+        <column name="CCUSTO_ID"/>
+      </key>
+      <one-to-many class="entidades.CpRequisi"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolicitacaos" table="CP_SOLICITACAO">
+      <key>
+        <column name="CCUSTO_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSolicitacao"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="frVeiculos" table="FR_VEICULO">
+      <key>
+        <column name="CCUSTO_ID"/>
+      </key>
+      <one-to-many class="entidades.FrVeiculo"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRetiradas" table="ES_RETIRADA">
+      <key>
+        <column name="CCUSTO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRetirada"/>
+    </set>
+  </class>
+</hibernate-mapping>

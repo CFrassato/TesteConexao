@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.FrMotorista" optimistic-lock="version" table="FR_MOTORISTA">
+    <id name="motoristaId" type="int">
+      <column name="MOTORISTA_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpSecretaria" fetch="select" name="cpSecretaria">
+      <column length="7" name="SECRETARIA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gbairro" fetch="select" name="gbairro">
+      <column length="4" name="GBAIRRO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gmunicipio" fetch="select" name="gmunicipio">
+      <column name="GMUNICIPIO_ID"/>
+    </many-to-one>
+    <property name="motorista" type="string">
+      <column length="40" name="MOTORISTA" not-null="true"/>
+    </property>
+    <property name="endereco" type="string">
+      <column length="40" name="ENDERECO"/>
+    </property>
+    <property name="cep" type="string">
+      <column length="8" name="CEP"/>
+    </property>
+    <property name="cpf" type="string">
+      <column length="11" name="CPF"/>
+    </property>
+    <property name="rg" type="string">
+      <column length="20" name="RG"/>
+    </property>
+    <property name="fone" type="string">
+      <column length="10" name="FONE"/>
+    </property>
+    <property name="celular" type="string">
+      <column length="10" name="CELULAR"/>
+    </property>
+    <property name="cnhNumero" type="string">
+      <column length="11" name="CNH_NUMERO"/>
+    </property>
+    <property name="cnhCategoria" type="string">
+      <column length="3" name="CNH_CATEGORIA"/>
+    </property>
+    <property name="cnhValidade" type="date">
+      <column length="10" name="CNH_VALIDADE"/>
+    </property>
+    <property name="desativado" type="string">
+      <column length="1" name="DESATIVADO" not-null="true"/>
+    </property>
+    <property name="fpempresaId" type="string">
+      <column length="3" name="FPEMPRESA_ID"/>
+    </property>
+    <property name="fpfuncionarioId" type="string">
+      <column length="6" name="FPFUNCIONARIO_ID"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="lcBloqueio" type="java.lang.Integer">
+      <column name="LC_BLOQUEIO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esPlanilhaBordoItems" table="ES_PLANILHA_BORDO_ITEM">
+      <key>
+        <column name="MOTORISTA_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsPlanilhaBordoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicDiretaItemCombs" table="ES_APLIC_DIRETA_ITEM_COMB">
+      <key>
+        <column name="MOTORISTA_ID"/>
+      </key>
+      <one-to-many class="entidades.EsAplicDiretaItemComb"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcCombDispBxes" table="LC_COMB_DISP_BX">
+      <key>
+        <column name="MOTORISTA_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.LcCombDispBx"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esMultas" table="ES_MULTA">
+      <key>
+        <column name="MOTORISTA_ID"/>
+      </key>
+      <one-to-many class="entidades.EsMulta"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsRequisicaoItem" optimistic-lock="version" table="ES_REQUISICAO_ITEM">
+    <id name="reqItemId" type="int">
+      <column name="REQ_ITEM_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpMaterial" fetch="select" name="cpMaterial">
+      <column name="MATERIAL_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMedida" fetch="select" name="cpMedida">
+      <column name="MEDIDA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsRequisicao" fetch="select" name="esRequisicao">
+      <column name="REQUISICAO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="itemId" type="int">
+      <column name="ITEM_ID" not-null="true"/>
+    </property>
+    <property name="unid" type="string">
+      <column length="5" name="UNID"/>
+    </property>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esRetiradaItems" table="ES_RETIRADA_ITEM">
+      <key>
+        <column name="REQ_ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRetiradaItem"/>
+    </set>
+  </class>
+</hibernate-mapping>

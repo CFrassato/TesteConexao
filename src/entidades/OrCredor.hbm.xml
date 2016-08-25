@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.OrCredor" optimistic-lock="version" table="OR_CREDOR">
+    <id name="codigo" type="string">
+      <column length="5" name="CODIGO"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.Gano" fetch="select" name="gano">
+      <column name="GANO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gempresa" fetch="select" name="gempresa">
+      <column name="GEMPRESA_ID" not-null="true"/>
+    </many-to-one>
+    <property name="credorId" type="int">
+      <column name="CREDOR_ID" not-null="true" unique="true"/>
+    </property>
+    <property name="grupo" type="string">
+      <column length="2" name="GRUPO"/>
+    </property>
+    <property name="endereco" type="string">
+      <column length="45" name="ENDERECO"/>
+    </property>
+    <property name="codcidade" type="string">
+      <column length="7" name="CODCIDADE"/>
+    </property>
+    <property name="cidade" type="string">
+      <column length="43" name="CIDADE"/>
+    </property>
+    <property name="fone" type="string">
+      <column length="11" name="FONE"/>
+    </property>
+    <property name="cae" type="string">
+      <column length="6" name="CAE"/>
+    </property>
+    <property name="fax" type="string">
+      <column length="11" name="FAX"/>
+    </property>
+    <property name="contato" type="string">
+      <column length="20" name="CONTATO"/>
+    </property>
+    <property name="bairro" type="string">
+      <column length="20" name="BAIRRO"/>
+    </property>
+    <property name="uf" type="string">
+      <column length="2" name="UF"/>
+    </property>
+    <property name="cep" type="string">
+      <column length="9" name="CEP"/>
+    </property>
+    <property name="inscMu" type="string">
+      <column length="20" name="INSC_MU"/>
+    </property>
+    <property name="inscEs" type="string">
+      <column length="14" name="INSC_ES"/>
+    </property>
+    <property name="inscMf" type="string">
+      <column length="14" name="INSC_MF"/>
+    </property>
+    <property name="banco" type="string">
+      <column length="12" name="BANCO"/>
+    </property>
+    <property name="agencia" type="string">
+      <column length="7" name="AGENCIA"/>
+    </property>
+    <property name="CCorrente" type="string">
+      <column length="17" name="C_CORRENTE"/>
+    </property>
+    <property name="bco" type="string">
+      <column length="4" name="BCO"/>
+    </property>
+    <property name="age" type="string">
+      <column length="9" name="AGE"/>
+    </property>
+    <property name="dage" type="java.lang.Character">
+      <column length="1" name="DAGE"/>
+    </property>
+    <property name="CC" type="string">
+      <column length="14" name="C_C"/>
+    </property>
+    <property name="dcC" type="java.lang.Character">
+      <column length="1" name="DC_C"/>
+    </property>
+    <property name="tipoDoc1" type="string">
+      <column length="6" name="TIPO_DOC1"/>
+    </property>
+    <property name="documento1" type="string">
+      <column length="20" name="DOCUMENTO1"/>
+    </property>
+    <property name="tipoDoc2" type="string">
+      <column length="6" name="TIPO_DOC2"/>
+    </property>
+    <property name="documento2" type="string">
+      <column length="20" name="DOCUMENTO2"/>
+    </property>
+    <property name="tipo" type="java.lang.Character">
+      <column length="1" name="TIPO"/>
+    </property>
+    <property name="simples" type="java.lang.Character">
+      <column length="1" name="SIMPLES"/>
+    </property>
+    <property name="debitos" type="java.lang.Character">
+      <column length="1" name="DEBITOS"/>
+    </property>
+    <property name="dtDebitos" type="date">
+      <column length="10" name="DT_DEBITOS"/>
+    </property>
+    <property name="dtCertCd" type="date">
+      <column length="10" name="DT_CERT_CD"/>
+    </property>
+    <property name="usCertCd" type="string">
+      <column length="12" name="US_CERT_CD"/>
+    </property>
+    <property name="infAdic" type="string">
+      <column length="30" name="INF_ADIC"/>
+    </property>
+    <property name="desativa" type="char">
+      <column length="1" name="DESATIVA" not-null="true"/>
+    </property>
+    <property name="nacionalid" type="java.lang.Character">
+      <column length="1" name="NACIONALID"/>
+    </property>
+    <property name="fantasia" type="string">
+      <column length="45" name="FANTASIA"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="nome" type="string">
+      <column length="60" name="NOME"/>
+    </property>
+    <property name="EMail" type="string">
+      <column length="45" name="E_MAIL"/>
+    </property>
+    <property name="tipoEmp" type="java.lang.Short">
+      <column name="TIPO_EMP"/>
+    </property>
+    <property name="cgIdentificacao" type="string">
+      <column length="18" name="CG_IDENTIFICACAO"/>
+    </property>
+    <property name="dataCad" type="date">
+      <column length="10" name="DATA_CAD"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="ctaBancariaId" type="java.lang.Integer">
+      <column name="CTA_BANCARIA_ID"/>
+    </property>
+    <property name="capSocial" type="big_decimal">
+      <column name="CAP_SOCIAL" not-null="true" precision="15"/>
+    </property>
+    <property name="certCrea" type="date">
+      <column length="10" name="CERT_CREA"/>
+    </property>
+    <property name="certEstad" type="date">
+      <column length="10" name="CERT_ESTAD"/>
+    </property>
+    <property name="certFalen" type="date">
+      <column length="10" name="CERT_FALEN"/>
+    </property>
+    <property name="certFeder" type="date">
+      <column length="10" name="CERT_FEDER"/>
+    </property>
+    <property name="certFgts" type="date">
+      <column length="10" name="CERT_FGTS"/>
+    </property>
+    <property name="certInss" type="date">
+      <column length="10" name="CERT_INSS"/>
+    </property>
+    <property name="certMunic" type="date">
+      <column length="10" name="CERT_MUNIC"/>
+    </property>
+    <property name="certUniao" type="date">
+      <column length="10" name="CERT_UNIAO"/>
+    </property>
+    <property name="certificado" type="java.lang.Integer">
+      <column name="CERTIFICADO"/>
+    </property>
+    <property name="certificadoAux" type="string">
+      <column length="10" name="CERTIFICADO_AUX"/>
+    </property>
+    <property name="cmaeId" type="string">
+      <column length="8" name="CMAE_ID"/>
+    </property>
+    <property name="cnaeId" type="string">
+      <column length="8" name="CNAE_ID"/>
+    </property>
+    <property name="dtCadastro" type="date">
+      <column length="10" name="DT_CADASTRO"/>
+    </property>
+    <property name="email" type="string">
+      <column length="45" name="EMAIL"/>
+    </property>
+    <property name="gmunicipioId" type="java.lang.Integer">
+      <column name="GMUNICIPIO_ID"/>
+    </property>
+    <property name="nacionalidade" type="string">
+      <column length="1" name="NACIONALIDADE"/>
+    </property>
+    <property name="objSocial" type="string">
+      <column length="0" name="OBJ_SOCIAL"/>
+    </property>
+    <property name="site" type="string">
+      <column length="45" name="SITE"/>
+    </property>
+    <property name="municipio" type="string">
+      <column length="50" name="MUNICIPIO"/>
+    </property>
+    <property name="inss" type="string">
+      <column length="11" name="INSS"/>
+    </property>
+    <property name="atoConstit" type="date">
+      <column length="10" name="ATO_CONSTIT"/>
+    </property>
+    <property name="cadMunic" type="date">
+      <column length="10" name="CAD_MUNIC"/>
+    </property>
+    <property name="cadEstad" type="date">
+      <column length="10" name="CAD_ESTAD"/>
+    </property>
+    <property name="cadCnpj" type="date">
+      <column length="10" name="CAD_CNPJ"/>
+    </property>
+    <property name="procGerEst" type="date">
+      <column length="10" name="PROC_GER_EST"/>
+    </property>
+    <property name="vcd" type="java.lang.Character">
+      <column length="1" name="VCD"/>
+    </property>
+    <property name="vce" type="java.lang.Character">
+      <column length="1" name="VCE"/>
+    </property>
+    <property name="vac" type="java.lang.Character">
+      <column length="1" name="VAC"/>
+    </property>
+    <property name="vpg" type="java.lang.Character">
+      <column length="1" name="VPG"/>
+    </property>
+    <property name="vci" type="java.lang.Character">
+      <column length="1" name="VCI"/>
+    </property>
+    <property name="vcm" type="java.lang.Character">
+      <column length="1" name="VCM"/>
+    </property>
+    <property name="vcam" type="java.lang.Character">
+      <column length="1" name="VCAM"/>
+    </property>
+    <property name="vdc" type="java.lang.Character">
+      <column length="1" name="VDC"/>
+    </property>
+    <property name="vcf" type="java.lang.Character">
+      <column length="1" name="VCF"/>
+    </property>
+    <property name="vcfa" type="java.lang.Character">
+      <column length="1" name="VCFA"/>
+    </property>
+    <property name="vcae" type="java.lang.Character">
+      <column length="1" name="VCAE"/>
+    </property>
+    <property name="vcfe" type="java.lang.Character">
+      <column length="1" name="VCFE"/>
+    </property>
+    <property name="vcre" type="java.lang.Character">
+      <column length="1" name="VCRE"/>
+    </property>
+    <property name="vcn" type="java.lang.Character">
+      <column length="1" name="VCN"/>
+    </property>
+    <property name="cadData" type="date">
+      <column length="10" name="CAD_DATA"/>
+    </property>
+    <property name="avisoCredorCnab240" type="java.lang.Character">
+      <column length="1" name="AVISO_CREDOR_CNAB240"/>
+    </property>
+    <property name="nomeMae" type="string">
+      <column length="100" name="NOME_MAE"/>
+    </property>
+    <property name="nomePai" type="string">
+      <column length="100" name="NOME_PAI"/>
+    </property>
+    <property name="nascPai" type="date">
+      <column length="10" name="NASC_PAI"/>
+    </property>
+    <property name="nascMae" type="date">
+      <column length="10" name="NASC_MAE"/>
+    </property>
+    <property name="ccObs" type="string">
+      <column length="100" name="CC_OBS"/>
+    </property>
+    <property name="ccIndiConj" type="char">
+      <column length="1" name="CC_INDI_CONJ" not-null="true">
+        <comment>I - Individual C - Conjunta</comment>
+      </column>
+    </property>
+    <property name="ccCorrPoup" type="char">
+      <column length="1" name="CC_CORR_POUP" not-null="true">
+        <comment>C - Corrente P -
+                PoupanÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ§a</comment>
+      </column>
+    </property>
+    <property name="pis" type="string">
+      <column length="11" name="PIS"/>
+    </property>
+    <property name="cbo" type="string">
+      <column length="6" name="CBO"/>
+    </property>
+    <property name="nomeVendedor" type="string">
+      <column length="60" name="NOME_VENDEDOR"/>
+    </property>
+    <property name="dtNasc" type="date">
+      <column length="10" name="DT_NASC"/>
+    </property>
+    <property name="cgMicroPeqEmp" type="java.lang.Integer">
+      <column name="CG_MICRO_PEQ_EMP"/>
+    </property>
+    <property name="certTrab" type="date">
+      <column length="10" name="CERT_TRAB"/>
+    </property>
+    <property name="vctr" type="java.lang.Character">
+      <column length="1" name="VCTR"/>
+    </property>
+    <property name="suspenso" type="java.lang.Character">
+      <column length="1" name="SUSPENSO"/>
+    </property>
+    <property name="motivo" type="string">
+      <column length="100" name="MOTIVO"/>
+    </property>
+    <property name="op" type="java.lang.Integer">
+      <column name="OP"/>
+    </property>
+    <property name="tpFor" type="java.lang.Integer">
+      <column name="TP_FOR"/>
+    </property>
+    <property name="celfone" type="string">
+      <column length="20" name="CELFONE"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpRepresentantes" table="CP_REPRESENTANTE">
+      <key>
+        <column length="5" name="CREDOR_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpRepresentante"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsItensVeiculo" optimistic-lock="version" table="ES_ITENS_VEICULO">
+    <id name="itemId" type="int">
+      <column name="ITEM_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="item" type="string">
+      <column length="50" name="ITEM" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="veiculoId" type="int">
+      <column name="VEICULO_ID" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esAcessoriosVeiculos" table="ES_ACESSORIOS_VEICULO">
+      <key>
+        <column name="ITEM_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsAcessoriosVeiculo"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esAvaliacaoItensVeiculos" table="ES_AVALIACAO_ITENS_VEICULO">
+      <key>
+        <column name="ITEM_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsAvaliacaoItensVeiculo"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.Gempresa" optimistic-lock="version" table="GEMPRESA">
+    <id name="gempresaId" type="int">
+      <column name="GEMPRESA_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="nomeEmpresa" type="string">
+      <column length="60" name="NOME_EMPRESA" not-null="true"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="40" name="ESTADO"/>
+    </property>
+    <property name="cnpj" type="string">
+      <column length="14" name="CNPJ"/>
+    </property>
+    <property name="endereco" type="string">
+      <column length="60" name="ENDERECO"/>
+    </property>
+    <property name="cidade" type="string">
+      <column length="40" name="CIDADE"/>
+    </property>
+    <property name="uf" type="string">
+      <column length="2" name="UF"/>
+    </property>
+    <property name="cep" type="string">
+      <column length="8" name="CEP"/>
+    </property>
+    <property name="exercicio" type="string">
+      <column length="4" name="EXERCICIO"/>
+    </property>
+    <property name="brasao" type="binary">
+      <column name="BRASAO"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="fone" type="string">
+      <column length="15" name="FONE"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="nomeSecretaria" type="string">
+      <column length="60" name="NOME_SECRETARIA"/>
+    </property>
+    <property name="brasaoEstado" type="binary">
+      <column name="BRASAO_ESTADO"/>
+    </property>
+    <property name="tipoEmp" type="java.lang.Integer">
+      <column name="TIPO_EMP"/>
+    </property>
+    <property name="site" type="string">
+      <column length="50" name="SITE"/>
+    </property>
+    <property name="email" type="string">
+      <column length="50" name="EMAIL"/>
+    </property>
+    <property name="unidadeGest" type="string">
+      <column length="50" name="UNIDADE_GEST"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpDespesas" table="CP_DESPESA">
+      <key>
+        <column name="GEMPRESA_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpDespesa"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="orCredors" table="OR_CREDOR">
+      <key>
+        <column name="GEMPRESA_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.OrCredor"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="orNatDesps" table="OR_NAT_DESP">
+      <key>
+        <column name="GEMPRESA_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.OrNatDesp"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpMaterialNatDesp" optimistic-lock="version" table="CP_MATERIAL_NAT_DESP">
+    <id name="materialNatDespId" type="int">
+      <column name="MATERIAL_NAT_DESP_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpMaterial" fetch="select" name="cpMaterial">
+      <column name="CODIGO" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.OrNatDesp" fetch="select" name="orNatDesp">
+      <column length="10" name="REDUZIDO" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.TceMtDesdobramento" fetch="select" name="tceMtDesdobramento">
+      <column length="2" name="ELEMENTO_ID" not-null="true"/>
+      <column length="2" name="SUBELEMENTO_ID"/>
+      <column length="2" name="DESDOBRAMENTO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.TceMtElemento" fetch="select" insert="false" name="tceMtElemento" update="false">
+      <column length="2" name="ELEMENTO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.TceMtSubelemento" fetch="select" insert="false" name="tceMtSubelemento" update="false">
+      <column length="2" name="ELEMENTO_ID" not-null="true"/>
+      <column length="2" name="SUBELEMENTO_ID"/>
+    </many-to-one>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpItems" table="CP_ITEM">
+      <key>
+        <column name="MATERIAL_NAT_DESP_ID"/>
+      </key>
+      <one-to-many class="entidades.CpItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentoItems" table="ES_RECEBIMENTO_ITEM">
+      <key>
+        <column name="MATERIAL_NAT_DESP_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimentoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSoItenses" table="CP_SO_ITENS">
+      <key>
+        <column name="MATERIAL_NAT_DESP_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSoItens"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpRqItenses" table="CP_RQ_ITENS">
+      <key>
+        <column name="MATERIAL_NAT_DESP_ID"/>
+      </key>
+      <one-to-many class="entidades.CpRqItens"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicacaoDiretaItems" table="ES_APLICACAO_DIRETA_ITEM">
+      <key>
+        <column name="MATERIAL_NAT_DESP_ID"/>
+      </key>
+      <one-to-many class="entidades.EsAplicacaoDiretaItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolicitacaoItems" table="CP_SOLICITACAO_ITEM">
+      <key>
+        <column name="MATERIAL_NAT_DESP_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSolicitacaoItem"/>
+    </set>
+  </class>
+</hibernate-mapping>

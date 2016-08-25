@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsRotas" optimistic-lock="version" table="ES_ROTAS">
+    <id name="rotasId" type="int">
+      <column name="ROTAS_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="endInicial" type="string">
+      <column length="45" name="END_INICIAL"/>
+    </property>
+    <property name="endFinal" type="string">
+      <column length="45" name="END_FINAL"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esLinhasTransps" table="ES_LINHAS_TRANSP">
+      <key>
+        <column name="ROTA_ID"/>
+      </key>
+      <one-to-many class="entidades.EsLinhasTransp"/>
+    </set>
+  </class>
+</hibernate-mapping>

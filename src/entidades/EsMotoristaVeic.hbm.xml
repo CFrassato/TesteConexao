@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsMotoristaVeic" optimistic-lock="version" table="ES_MOTORISTA_VEIC">
+    <id name="motoristaVeicId" type="int">
+      <column name="MOTORISTA_VEIC_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.FrVeiculo" fetch="select" name="frVeiculo">
+      <column name="VEICULO_ID"/>
+    </many-to-one>
+    <property name="motoristaId" type="java.lang.Integer">
+      <column name="MOTORISTA_ID"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

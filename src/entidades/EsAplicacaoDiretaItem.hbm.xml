@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsAplicacaoDiretaItem" optimistic-lock="version" table="ES_APLICACAO_DIRETA_ITEM">
+    <id name="aplicacaoDiretaItemId" type="int">
+      <column name="APLICACAO_DIRETA_ITEM_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpConcorrencia" fetch="select" name="cpConcorrencia">
+      <column name="COM_GANO_ID"/>
+      <column name="COM_TIPO_COMPRA_ID"/>
+      <column name="COM_COMPRA_ID"/>
+      <column name="COM_CREDOR_ID"/>
+      <column name="COM_ITEM_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMaterial" fetch="select" name="cpMaterial">
+      <column name="MATERIAL_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMaterialNatDesp" fetch="select" name="cpMaterialNatDesp">
+      <column name="MATERIAL_NAT_DESP_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMedida" fetch="select" name="cpMedida">
+      <column name="MEDIDA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpSoItens" fetch="select" name="cpSoItens">
+      <column name="SOL_EXERCICIO"/>
+      <column length="7" name="SOL_SECRETARIA"/>
+      <column name="SOL_NUMERO"/>
+      <column name="SOL_ITEM"/>
+      <column name="SOL_TERMO_ITEM_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsAplicacaoDireta" fetch="select" name="esAplicacaoDireta">
+      <column name="APLICACAO_DIRETA_ID" not-null="true"/>
+    </many-to-one>
+    <property name="itemId" type="int">
+      <column name="ITEM_ID" not-null="true"/>
+    </property>
+    <property name="unid" type="string">
+      <column length="5" name="UNID"/>
+    </property>
+    <property name="material" type="string">
+      <column length="0" name="MATERIAL"/>
+    </property>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="vlUnit" type="big_decimal">
+      <column name="VL_UNIT" not-null="true" precision="15" scale="5"/>
+    </property>
+    <property name="vlTotal" type="big_decimal">
+      <column name="VL_TOTAL" precision="18"/>
+    </property>
+    <property name="reqAnoRequisi" type="java.lang.Integer">
+      <column name="REQ_ANO_REQUISI"/>
+    </property>
+    <property name="reqNumero" type="java.lang.Integer">
+      <column name="REQ_NUMERO"/>
+    </property>
+    <property name="reqItem" type="java.lang.Integer">
+      <column name="REQ_ITEM"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicDiretaItemCombs" table="ES_APLIC_DIRETA_ITEM_COMB">
+      <key>
+        <column name="APLIC_DIRETA_ITEM_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsAplicDiretaItemComb"/>
+    </set>
+  </class>
+</hibernate-mapping>

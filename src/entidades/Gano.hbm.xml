@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.Gano" optimistic-lock="version" table="GANO">
+    <id name="ganoId" type="int">
+      <column name="GANO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="orNatDesps" table="OR_NAT_DESP">
+      <key>
+        <column name="GANO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.OrNatDesp"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpCompras" table="CP_COMPRA">
+      <key>
+        <column name="GANO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpCompra"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpDespesas" table="CP_DESPESA">
+      <key>
+        <column name="GANO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpDespesa"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="orCredors" table="OR_CREDOR">
+      <key>
+        <column name="GANO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.OrCredor"/>
+    </set>
+  </class>
+</hibernate-mapping>

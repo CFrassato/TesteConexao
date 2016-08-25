@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpTipoCompra" optimistic-lock="version" table="CP_TIPO_COMPRA">
+    <id name="tipoCompraId" type="int">
+      <column name="TIPO_COMPRA_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpModLicitacao" fetch="select" name="cpModLicitacao">
+      <column name="MOD_LICITACAO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="tceItem" type="string">
+      <column length="4" name="TCE_ITEM"/>
+    </property>
+    <property name="descricao" type="string">
+      <column length="60" name="DESCRICAO" not-null="true"/>
+    </property>
+    <property name="carencia" type="int">
+      <column name="CARENCIA" not-null="true"/>
+    </property>
+    <property name="artigo" type="char">
+      <column length="1" name="ARTIGO" not-null="true"/>
+    </property>
+    <property name="condicao" type="string">
+      <column length="0" name="CONDICAO"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="tipoParticipacao" type="java.lang.Character">
+      <column length="1" name="TIPO_PARTICIPACAO"/>
+    </property>
+    <property name="fundamentoLegal" type="string">
+      <column length="500" name="FUNDAMENTO_LEGAL"/>
+    </property>
+    <property name="usaSrp" type="string">
+      <column length="1" name="USA_SRP"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpProtocolos" table="CP_PROTOCOLO">
+      <key>
+        <column name="TIPO" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpProtocolo"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpCompras" table="CP_COMPRA">
+      <key>
+        <column name="TIPO_COMPRA_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpCompra"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolMats" table="CP_SOL_MAT">
+      <key>
+        <column name="TIPO_COMPRA_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSolMat"/>
+    </set>
+  </class>
+</hibernate-mapping>

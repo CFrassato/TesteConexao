@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsInventario" optimistic-lock="version" table="ES_INVENTARIO">
+    <id name="inventarioId" type="int">
+      <column name="INVENTARIO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.EsComissaoInventario" fetch="select" name="esComissaoInventario">
+      <column name="COMISSAO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsDeposito" fetch="select" name="esDeposito">
+      <column name="DEPOSITO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsInventarioTipo" fetch="select" name="esInventarioTipo">
+      <column name="INVENTARIO_TIPO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gusuario" fetch="select" name="gusuario">
+      <column length="5" name="GUSUARIO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="responsavelId" type="string">
+      <column length="5" name="RESPONSAVEL_ID" not-null="true"/>
+    </property>
+    <property name="descricao" type="string">
+      <column length="100" name="DESCRICAO" not-null="true"/>
+    </property>
+    <property name="dataAbertura" type="date">
+      <column length="10" name="DATA_ABERTURA" not-null="true"/>
+    </property>
+    <property name="dataFechamento" type="date">
+      <column length="10" name="DATA_FECHAMENTO"/>
+    </property>
+    <property name="status" type="char">
+      <column length="1" name="STATUS" not-null="true"/>
+    </property>
+    <property name="obs" type="string">
+      <column length="250" name="OBS"/>
+    </property>
+    <property name="estornoMotivo" type="string">
+      <column length="400" name="ESTORNO_MOTIVO"/>
+    </property>
+    <property name="estornoData" type="timestamp">
+      <column length="19" name="ESTORNO_DATA"/>
+    </property>
+    <property name="estornoGusuarioId" type="string">
+      <column length="5" name="ESTORNO_GUSUARIO_ID"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarioItems" table="ES_INVENTARIO_ITEM">
+      <key>
+        <column name="INVENTARIO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsInventarioItem"/>
+    </set>
+  </class>
+</hibernate-mapping>

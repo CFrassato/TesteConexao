@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpSoItens" optimistic-lock="version" table="CP_SO_ITENS">
+    <composite-id class="entidades.CpSoItensId" name="id">
+      <key-property name="exercicio" type="int">
+        <column name="EXERCICIO"/>
+      </key-property>
+      <key-property name="secretaria" type="string">
+        <column length="7" name="SECRETARIA"/>
+      </key-property>
+      <key-property name="numero" type="int">
+        <column name="NUMERO"/>
+      </key-property>
+      <key-property name="item" type="int">
+        <column name="ITEM"/>
+      </key-property>
+      <key-property name="termoItemId" type="int">
+        <column name="TERMO_ITEM_ID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="entidades.CpConcorrencia" fetch="select" name="cpConcorrencia">
+      <column name="GANO_ID"/>
+      <column name="TIPO_COMPRA_ID"/>
+      <column name="COMPRA_ID"/>
+      <column name="CREDOR_ID"/>
+      <column name="ITEM_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMaterial" fetch="select" name="cpMaterial">
+      <column name="MATERIAL"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMaterialNatDesp" fetch="select" name="cpMaterialNatDesp">
+      <column name="MATERIAL_NAT_DESP_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMedida" fetch="select" name="cpMedida">
+      <column name="MEDIDA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpSolMat" fetch="select" insert="false" name="cpSolMat" update="false">
+      <column name="EXERCICIO" not-null="true"/>
+      <column length="7" name="SECRETARIA" not-null="true"/>
+      <column name="NUMERO" not-null="true"/>
+    </many-to-one>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="unid" type="string">
+      <column length="5" name="UNID"/>
+    </property>
+    <property name="compl" type="string">
+      <column length="0" name="COMPL"/>
+    </property>
+    <property name="unitEst" type="big_decimal">
+      <column name="UNIT_EST" not-null="true" precision="18"/>
+    </property>
+    <property name="totaEst" type="big_decimal">
+      <column name="TOTA_EST" not-null="true" precision="18"/>
+    </property>
+    <property name="prUnit" type="big_decimal">
+      <column name="PR_UNIT" not-null="true" precision="15" scale="5"/>
+    </property>
+    <property name="prTotal" type="big_decimal">
+      <column name="PR_TOTAL" not-null="true" precision="18"/>
+    </property>
+    <property name="situacao" type="java.lang.Character">
+      <column length="1" name="SITUACAO"/>
+    </property>
+    <property name="tipo" type="java.lang.Character">
+      <column length="1" name="TIPO"/>
+    </property>
+    <property name="ultlinesp" type="big_decimal">
+      <column name="ULTLINESP" precision="18"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="caronaItemId" type="java.lang.Integer">
+      <column name="CARONA_ITEM_ID"/>
+    </property>
+    <property name="adtAgrup" type="java.lang.Character">
+      <column length="1" name="ADT_AGRUP"/>
+    </property>
+    <property name="lcBloqueio" type="java.lang.Integer">
+      <column name="LC_BLOQUEIO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicacaoDiretaItems" table="ES_APLICACAO_DIRETA_ITEM">
+      <key>
+        <column name="SOL_EXERCICIO"/>
+        <column length="7" name="SOL_SECRETARIA"/>
+        <column name="SOL_NUMERO"/>
+        <column name="SOL_ITEM"/>
+        <column name="SOL_TERMO_ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.EsAplicacaoDiretaItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpRqItenses" table="CP_RQ_ITENS">
+      <key>
+        <column name="SOL_EXERCICIO"/>
+        <column length="7" name="SOL_SECRETARIA"/>
+        <column name="SOL_NUMERO"/>
+        <column name="SOL_ITEM"/>
+        <column name="SOL_TERMO_ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.CpRqItens"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentoItems" table="ES_RECEBIMENTO_ITEM">
+      <key>
+        <column name="SOL_EXERCICIO"/>
+        <column length="7" name="SOL_SECRETARIA"/>
+        <column name="SOL_NUMERO"/>
+        <column name="SOL_ITEM"/>
+        <column name="SOL_TERMO_ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimentoItem"/>
+    </set>
+  </class>
+</hibernate-mapping>

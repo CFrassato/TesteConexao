@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpSolMat" optimistic-lock="version" table="CP_SOL_MAT">
+    <composite-id class="entidades.CpSolMatId" name="id">
+      <key-property name="exercicio" type="int">
+        <column name="EXERCICIO"/>
+      </key-property>
+      <key-property name="secretaria" type="string">
+        <column length="7" name="SECRETARIA"/>
+      </key-property>
+      <key-property name="numero" type="int">
+        <column name="NUMERO"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="entidades.CpCconsumo" fetch="select" insert="false" name="cpCconsumo" update="false">
+      <column length="7" name="SECRETARIA" not-null="true"/>
+      <column name="CCONSUMO"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpCompra" fetch="select" name="cpCompra">
+      <column name="GANO_ID"/>
+      <column name="TIPO_COMPRA_ID"/>
+      <column name="COMPRA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpProtocolo" fetch="select" name="cpProtocoloByFkCpSolMatCpProtocolo2">
+      <column name="ANOPROTO2"/>
+      <column name="PROTO2"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpProtocolo" fetch="select" name="cpProtocoloByFkCpSolMatCpProtocolo1">
+      <column name="ANOPROTO1"/>
+      <column name="PROTO1"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpTipoCompra" fetch="select" insert="false" name="cpTipoCompra" update="false">
+      <column name="TIPO_COMPRA_ID"/>
+    </many-to-one>
+    <property name="data" type="date">
+      <column length="10" name="DATA"/>
+    </property>
+    <property name="credor" type="java.lang.Integer">
+      <column name="CREDOR"/>
+    </property>
+    <property name="complement" type="string">
+      <column length="1000" name="COMPLEMENT"/>
+    </property>
+    <property name="matDescon" type="big_decimal">
+      <column name="MAT_DESCON" precision="18"/>
+    </property>
+    <property name="serDescon" type="big_decimal">
+      <column name="SER_DESCON" precision="18"/>
+    </property>
+    <property name="situacao" type="java.lang.Character">
+      <column length="1" name="SITUACAO"/>
+    </property>
+    <property name="atividade" type="string">
+      <column length="33" name="ATIVIDADE"/>
+    </property>
+    <property name="tipoImp" type="string">
+      <column length="5" name="TIPO_IMP"/>
+    </property>
+    <property name="descImp" type="big_decimal">
+      <column name="DESC_IMP" not-null="true" precision="15"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="atividadeAux" type="string">
+      <column length="33" name="ATIVIDADE_AUX"/>
+    </property>
+    <property name="empenho" type="string">
+      <column length="7" name="EMPENHO"/>
+    </property>
+    <property name="tipResId" type="string">
+      <column length="1" name="TIP_RES_ID"/>
+    </property>
+    <property name="reservaId" type="string">
+      <column length="6" name="RESERVA_ID"/>
+    </property>
+    <property name="empenhoAut" type="string">
+      <column length="7" name="EMPENHO_AUT"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="empInstrumentocontrato" type="java.lang.Integer">
+      <column name="EMP_INSTRUMENTOCONTRATO"/>
+    </property>
+    <property name="contNumero" type="string">
+      <column length="16" name="CONT_NUMERO"/>
+    </property>
+    <property name="gusuarioId" type="string">
+      <column length="5" name="GUSUARIO_ID"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicacaoDiretas" table="ES_APLICACAO_DIRETA">
+      <key>
+        <column name="SOL_EXERCICIO"/>
+        <column length="7" name="SOL_SECRETARIA"/>
+        <column name="SOL_NUMERO"/>
+      </key>
+      <one-to-many class="entidades.EsAplicacaoDireta"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentos" table="ES_RECEBIMENTO">
+      <key>
+        <column name="SOL_EXERCICIO"/>
+        <column length="7" name="SOL_SECRETARIA"/>
+        <column name="SOL_NUMERO"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimento"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpRequisis" table="CP_REQUISI">
+      <key>
+        <column name="SOL_EXERCICIO"/>
+        <column length="7" name="SOL_SECRETARIA"/>
+        <column name="SOL_NUMERO"/>
+      </key>
+      <one-to-many class="entidades.CpRequisi"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSoItenses" table="CP_SO_ITENS">
+      <key>
+        <column name="EXERCICIO" not-null="true"/>
+        <column length="7" name="SECRETARIA" not-null="true"/>
+        <column name="NUMERO" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpSoItens"/>
+    </set>
+  </class>
+</hibernate-mapping>

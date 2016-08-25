@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsRetiradaItemTmp" optimistic-lock="version" table="ES_RETIRADA_ITEM_TMP">
+    <id name="retItemId" type="int">
+      <column name="RET_ITEM_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="retiradaId" type="int">
+      <column name="RETIRADA_ID" not-null="true"/>
+    </property>
+    <property name="itemId" type="int">
+      <column name="ITEM_ID" not-null="true"/>
+    </property>
+    <property name="unid" type="string">
+      <column length="5" name="UNID"/>
+    </property>
+    <property name="materialId" type="int">
+      <column name="MATERIAL_ID" not-null="true"/>
+    </property>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="recItemId" type="java.lang.Integer">
+      <column name="REC_ITEM_ID"/>
+    </property>
+    <property name="reqItemId" type="java.lang.Integer">
+      <column name="REQ_ITEM_ID"/>
+    </property>
+    <property name="medidaId" type="java.lang.Integer">
+      <column name="MEDIDA_ID"/>
+    </property>
+    <property name="certo" type="string">
+      <column length="1" name="CERTO" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

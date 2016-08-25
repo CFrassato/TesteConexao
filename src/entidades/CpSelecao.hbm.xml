@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpSelecao" optimistic-lock="version" table="CP_SELECAO">
+    <composite-id class="entidades.CpSelecaoId" name="id">
+      <key-property name="ganoId" type="int">
+        <column name="GANO_ID"/>
+      </key-property>
+      <key-property name="tipoCompraId" type="int">
+        <column name="TIPO_COMPRA_ID"/>
+      </key-property>
+      <key-property name="compraId" type="int">
+        <column name="COMPRA_ID"/>
+      </key-property>
+      <key-property name="credorId" type="int">
+        <column name="CREDOR_ID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="entidades.CpCompra" fetch="select" insert="false" name="cpCompra" update="false">
+      <column name="GANO_ID" not-null="true"/>
+      <column name="TIPO_COMPRA_ID" not-null="true"/>
+      <column name="COMPRA_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpRepresentante" fetch="select" name="cpRepresentante">
+      <column name="REPRESENTANTE_ID"/>
+    </many-to-one>
+    <property name="situacao" type="char">
+      <column length="1" name="SITUACAO" not-null="true"/>
+    </property>
+    <property name="tpPart" type="java.lang.Character">
+      <column length="1" name="TP_PART"/>
+    </property>
+    <property name="sequencia" type="string">
+      <column length="3" name="SEQUENCIA"/>
+    </property>
+    <property name="cgcCons" type="string">
+      <column length="14" name="CGC_CONS"/>
+    </property>
+    <property name="data" type="date">
+      <column length="10" name="DATA"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="motInabilitar" type="string">
+      <column length="100" name="MOT_INABILITAR"/>
+    </property>
+    <property name="representante" type="string">
+      <column length="60" name="REPRESENTANTE"/>
+    </property>
+    <property name="pcplicHabilitado" type="java.lang.Character">
+      <column length="1" name="PCPLIC_HABILITADO"/>
+    </property>
+    <property name="partUtilizaLeiCompl" type="string">
+      <column length="1" name="PART_UTILIZA_LEI_COMPL" not-null="true">
+        <comment>Participante utiliza lei complementar 123/2006: S/N</comment>
+      </column>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpConcorrencias" table="CP_CONCORRENCIA">
+      <key>
+        <column name="GANO_ID" not-null="true"/>
+        <column name="TIPO_COMPRA_ID" not-null="true"/>
+        <column name="COMPRA_ID" not-null="true"/>
+        <column name="CREDOR_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpConcorrencia"/>
+    </set>
+  </class>
+</hibernate-mapping>

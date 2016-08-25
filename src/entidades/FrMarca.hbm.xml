@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.FrMarca" optimistic-lock="version" table="FR_MARCA">
+    <id name="marcaId" type="int">
+      <column name="MARCA_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="marca" type="string">
+      <column length="25" name="MARCA" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="frVeiculos" table="FR_VEICULO">
+      <key>
+        <column name="MARCA_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.FrVeiculo"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="frModelos" table="FR_MODELO">
+      <key>
+        <column name="MARCA_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.FrModelo"/>
+    </set>
+  </class>
+</hibernate-mapping>

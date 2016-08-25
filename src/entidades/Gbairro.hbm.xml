@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.Gbairro" optimistic-lock="version" table="GBAIRRO">
+    <id name="gbairroId" type="string">
+      <column length="4" name="GBAIRRO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="bairro" type="string">
+      <column length="30" name="BAIRRO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="bairroDic" type="char">
+      <column length="1" name="BAIRRO_DIC" not-null="true"/>
+    </property>
+    <property name="loteamento" type="string">
+      <column length="1" name="LOTEAMENTO"/>
+    </property>
+    <property name="urIluEdi" type="big_decimal">
+      <column name="UR_ILU_EDI" precision="18"/>
+    </property>
+    <property name="urIluTer" type="big_decimal">
+      <column name="UR_ILU_TER" precision="18" scale="3"/>
+    </property>
+    <property name="m2PadTer" type="big_decimal">
+      <column name="M2_PAD_TER" precision="18"/>
+    </property>
+    <property name="urColetaLixo" type="big_decimal">
+      <column name="UR_COLETA_LIXO" precision="18"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="frMotoristas" table="FR_MOTORISTA">
+      <key>
+        <column length="4" name="GBAIRRO_ID"/>
+      </key>
+      <one-to-many class="entidades.FrMotorista"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esPacientes" table="ES_PACIENTE">
+      <key>
+        <column length="4" name="GBAIRRO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsPaciente"/>
+    </set>
+  </class>
+</hibernate-mapping>

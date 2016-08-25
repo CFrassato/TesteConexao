@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsRetirada" optimistic-lock="version" table="ES_RETIRADA">
+    <id name="retiradaId" type="int">
+      <column name="RETIRADA_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpCcusto" fetch="select" name="cpCcusto">
+      <column name="CCUSTO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpSecretaria" fetch="select" name="cpSecretaria">
+      <column length="7" name="SECRETARIA_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsDeposito" fetch="select" name="esDeposito">
+      <column name="DEPOSITO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsProcessoInventario" fetch="select" name="esProcessoInventario">
+      <column name="PROCESSO_INVENTARIO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsRequisicao" fetch="select" name="esRequisicao">
+      <column name="REQUISICAO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gusuario" fetch="select" name="gusuario">
+      <column length="5" name="USU_CANCELA"/>
+    </many-to-one>
+    <many-to-one class="entidades.LcCombDispBx" fetch="select" name="lcCombDispBx">
+      <column name="COMB_DISP_BX_ID"/>
+    </many-to-one>
+    <property name="data" type="date">
+      <column length="10" name="DATA" not-null="true"/>
+    </property>
+    <property name="tipo" type="int">
+      <column name="TIPO" not-null="true"/>
+    </property>
+    <property name="atividade" type="string">
+      <column length="24" name="ATIVIDADE"/>
+    </property>
+    <property name="gusuarioId" type="string">
+      <column length="5" name="GUSUARIO_ID"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="cancelada" type="string">
+      <column length="1" name="CANCELADA" not-null="true"/>
+    </property>
+    <property name="datCancela" type="date">
+      <column length="10" name="DAT_CANCELA"/>
+    </property>
+    <property name="motCancela" type="string">
+      <column length="100" name="MOT_CANCELA"/>
+    </property>
+    <property name="obs" type="string">
+      <column length="0" name="OBS"/>
+    </property>
+    <property name="solicitanteId" type="string">
+      <column length="6" name="SOLICITANTE_ID"/>
+    </property>
+    <property name="gacessoInclusao" type="timestamp">
+      <column length="19" name="GACESSO_INCLUSAO"/>
+    </property>
+    <property name="lcBloqueio" type="java.lang.Integer">
+      <column name="LC_BLOQUEIO"/>
+    </property>
+    <property name="abastecimento" type="int">
+      <column name="ABASTECIMENTO" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esRetiradaItems" table="ES_RETIRADA_ITEM">
+      <key>
+        <column name="RETIRADA_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsRetiradaItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esConsumoContabs" table="ES_CONSUMO_CONTAB">
+      <key>
+        <column name="RETIRADA_ID"/>
+      </key>
+      <one-to-many class="entidades.EsConsumoContab"/>
+    </set>
+  </class>
+</hibernate-mapping>

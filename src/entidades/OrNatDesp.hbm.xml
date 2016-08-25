@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.OrNatDesp" optimistic-lock="version" table="OR_NAT_DESP">
+    <id name="natDespId" type="string">
+      <column length="10" name="NAT_DESP_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.Gano" fetch="select" name="gano">
+      <column name="GANO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gempresa" fetch="select" name="gempresa">
+      <column name="GEMPRESA_ID" not-null="true"/>
+    </many-to-one>
+    <property name="reduzido" type="int">
+      <column name="REDUZIDO" not-null="true" unique="true"/>
+    </property>
+    <property name="ligacaoTce" type="string">
+      <column length="10" name="LIGACAO_TCE"/>
+    </property>
+    <property name="naturezaDespesa" type="string">
+      <column length="100" name="NATUREZA_DESPESA"/>
+    </property>
+    <property name="lancar" type="java.lang.Character">
+      <column length="1" name="LANCAR"/>
+    </property>
+    <property name="lancar2" type="java.lang.Character">
+      <column length="1" name="LANCAR2"/>
+    </property>
+    <property name="ctecId" type="java.lang.Character">
+      <column length="1" name="CTEC_ID"/>
+    </property>
+    <property name="ndespId" type="java.lang.Character">
+      <column length="1" name="NDESP_ID"/>
+    </property>
+    <property name="mdapId" type="string">
+      <column length="2" name="MDAP_ID"/>
+    </property>
+    <property name="eldeId" type="string">
+      <column length="2" name="ELDE_ID"/>
+    </property>
+    <property name="seldeId" type="string">
+      <column length="2" name="SELDE_ID"/>
+    </property>
+    <property name="deldeId" type="string">
+      <column length="2" name="DELDE_ID"/>
+    </property>
+    <property name="conta" type="string">
+      <column length="10" name="CONTA"/>
+    </property>
+    <property name="tce" type="string">
+      <column length="10" name="TCE"/>
+    </property>
+    <property name="tce2" type="string">
+      <column length="14" name="TCE2"/>
+    </property>
+    <property name="tcesaude" type="string">
+      <column length="12" name="TCESAUDE"/>
+    </property>
+    <property name="nome" type="string">
+      <column length="100" name="NOME"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="claDesp" type="int">
+      <column name="CLA_DESP" not-null="true"/>
+    </property>
+    <property name="desdobrar" type="java.lang.Character">
+      <column length="1" name="DESDOBRAR"/>
+    </property>
+    <property name="sysDataC" type="date">
+      <column length="10" name="SYS_DATA_C"/>
+    </property>
+    <property name="sysUsuCa" type="string">
+      <column length="12" name="SYS_USU_CA"/>
+    </property>
+    <property name="sysDataA" type="date">
+      <column length="10" name="SYS_DATA_A"/>
+    </property>
+    <property name="sysUsuAl" type="string">
+      <column length="12" name="SYS_USU_AL"/>
+    </property>
+    <property name="sysDataE" type="date">
+      <column length="10" name="SYS_DATA_E"/>
+    </property>
+    <property name="sysUsuEx" type="string">
+      <column length="12" name="SYS_USU_EX"/>
+    </property>
+    <property name="nivel" type="java.lang.Integer">
+      <column name="NIVEL"/>
+    </property>
+    <property name="elde" type="string">
+      <column length="2" name="ELDE"/>
+    </property>
+    <property name="selde" type="string">
+      <column length="2" name="SELDE"/>
+    </property>
+    <property name="delde" type="string">
+      <column length="2" name="DELDE"/>
+    </property>
+    <property name="despPessoal" type="java.lang.Character">
+      <column length="1" name="DESP_PESSOAL"/>
+    </property>
+    <property name="incorporaPatr" type="java.lang.Character">
+      <column length="1" name="INCORPORA_PATR"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpMaterialNatDesps" table="CP_MATERIAL_NAT_DESP">
+      <key>
+        <column length="10" name="REDUZIDO" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpMaterialNatDesp"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpItems" table="CP_ITEM">
+      <key>
+        <column length="10" name="REDUZIDO"/>
+      </key>
+      <one-to-many class="entidades.CpItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpMaterials" table="CP_MATERIAL">
+      <key>
+        <column length="10" name="REDUZIDO"/>
+      </key>
+      <one-to-many class="entidades.CpMaterial"/>
+    </set>
+  </class>
+</hibernate-mapping>

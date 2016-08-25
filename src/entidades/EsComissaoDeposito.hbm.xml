@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsComissaoDeposito" optimistic-lock="version" table="ES_COMISSAO_DEPOSITO">
+    <id name="codigoId" type="int">
+      <column name="CODIGO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.EsComissaoInventario" fetch="select" name="esComissaoInventario">
+      <column name="COMISSAO_ID"/>
+    </many-to-one>
+    <property name="descricao" type="string">
+      <column length="100" name="DESCRICAO"/>
+    </property>
+    <property name="codDeposito" type="java.lang.Integer">
+      <column name="COD_DEPOSITO"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

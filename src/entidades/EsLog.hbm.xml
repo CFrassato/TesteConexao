@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsLog" optimistic-lock="version" table="ES_LOG">
+    <id name="logId" type="int">
+      <column name="LOG_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="gusuarioId" type="string">
+      <column length="5" name="GUSUARIO_ID" not-null="true"/>
+    </property>
+    <property name="usuario" type="string">
+      <column length="40" name="USUARIO" not-null="true"/>
+    </property>
+    <property name="dataHora" type="timestamp">
+      <column length="19" name="DATA_HORA" not-null="true"/>
+    </property>
+    <property name="pagina" type="int">
+      <column name="PAGINA" not-null="true"/>
+    </property>
+    <property name="acao" type="char">
+      <column length="1" name="ACAO" not-null="true"/>
+    </property>
+    <property name="pk1" type="string">
+      <column length="30" name="PK1" not-null="true"/>
+    </property>
+    <property name="pk2" type="string">
+      <column length="30" name="PK2"/>
+    </property>
+    <property name="pk3" type="string">
+      <column length="30" name="PK3"/>
+    </property>
+    <property name="pk4" type="string">
+      <column length="30" name="PK4"/>
+    </property>
+    <property name="pk5" type="string">
+      <column length="30" name="PK5"/>
+    </property>
+    <property name="pk6" type="string">
+      <column length="30" name="PK6"/>
+    </property>
+    <property name="pk7" type="string">
+      <column length="30" name="PK7"/>
+    </property>
+    <property name="pk8" type="string">
+      <column length="30" name="PK8"/>
+    </property>
+    <property name="pk9" type="string">
+      <column length="30" name="PK9"/>
+    </property>
+    <property name="pk10" type="string">
+      <column length="30" name="PK10"/>
+    </property>
+    <property name="pk11" type="string">
+      <column length="30" name="PK11"/>
+    </property>
+    <property name="pk12" type="string">
+      <column length="30" name="PK12"/>
+    </property>
+    <property name="pk13" type="string">
+      <column length="30" name="PK13"/>
+    </property>
+    <property name="pk14" type="string">
+      <column length="30" name="PK14"/>
+    </property>
+    <property name="pk15" type="string">
+      <column length="30" name="PK15"/>
+    </property>
+    <property name="pk16" type="string">
+      <column length="30" name="PK16"/>
+    </property>
+    <property name="pk17" type="string">
+      <column length="30" name="PK17"/>
+    </property>
+    <property name="pk18" type="string">
+      <column length="30" name="PK18"/>
+    </property>
+    <property name="pk19" type="string">
+      <column length="30" name="PK19"/>
+    </property>
+    <property name="pk20" type="string">
+      <column length="30" name="PK20"/>
+    </property>
+    <property name="descricao" type="binary">
+      <column name="DESCRICAO" not-null="true"/>
+    </property>
+    <property name="query" type="binary">
+      <column name="QUERY" not-null="true"/>
+    </property>
+    <property name="ip" type="string">
+      <column length="20" name="IP"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

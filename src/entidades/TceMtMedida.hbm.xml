@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.TceMtMedida" optimistic-lock="version" table="TCE_MT_MEDIDA">
+    <id name="tceMtMedidaId" type="int">
+      <column name="TCE_MT_MEDIDA_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="tceMtMedida" type="string">
+      <column length="40" name="TCE_MT_MEDIDA" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="tceMtAbreviacao" type="string">
+      <column length="6" name="TCE_MT_ABREVIACAO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpMedidas" table="CP_MEDIDA">
+      <key>
+        <column name="TCE_MT_MEDIDA_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpMedida"/>
+    </set>
+  </class>
+</hibernate-mapping>

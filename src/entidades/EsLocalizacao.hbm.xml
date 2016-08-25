@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsLocalizacao" optimistic-lock="version" table="ES_LOCALIZACAO">
+    <id name="localizacaoId" type="int">
+      <column name="LOCALIZACAO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="estante" type="string">
+      <column length="100" name="ESTANTE"/>
+    </property>
+    <property name="plateleira" type="string">
+      <column length="100" name="PLATELEIRA"/>
+    </property>
+    <property name="sala" type="string">
+      <column length="100" name="SALA"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="secretariaId" type="string">
+      <column length="7" name="SECRETARIA_ID"/>
+    </property>
+    <property name="depositoId" type="java.lang.Integer">
+      <column name="DEPOSITO_ID"/>
+    </property>
+    <property name="materialId" type="java.lang.Integer">
+      <column name="MATERIAL_ID"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpMaterials" table="CP_MATERIAL">
+      <key>
+        <column name="LOCALIZACAO_ID"/>
+      </key>
+      <one-to-many class="entidades.CpMaterial"/>
+    </set>
+  </class>
+</hibernate-mapping>

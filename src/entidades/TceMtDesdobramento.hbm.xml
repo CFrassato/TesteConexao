@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.TceMtDesdobramento" optimistic-lock="version" table="TCE_MT_DESDOBRAMENTO">
+    <composite-id class="entidades.TceMtDesdobramentoId" name="id">
+      <key-property name="elementoId" type="string">
+        <column length="2" name="ELEMENTO_ID"/>
+      </key-property>
+      <key-property name="subelementoId" type="string">
+        <column length="2" name="SUBELEMENTO_ID"/>
+      </key-property>
+      <key-property name="desdobramentoId" type="string">
+        <column length="2" name="DESDOBRAMENTO_ID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="entidades.TceMtElemento" fetch="select" insert="false" name="tceMtElemento" update="false">
+      <column length="2" name="ELEMENTO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.TceMtSubelemento" fetch="select" insert="false" name="tceMtSubelemento" update="false">
+      <column length="2" name="ELEMENTO_ID" not-null="true"/>
+      <column length="2" name="SUBELEMENTO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="desdobramento" type="string">
+      <column length="100" name="DESDOBRAMENTO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpMaterialNatDesps" table="CP_MATERIAL_NAT_DESP">
+      <key>
+        <column length="2" name="ELEMENTO_ID" not-null="true"/>
+        <column length="2" name="SUBELEMENTO_ID"/>
+        <column length="2" name="DESDOBRAMENTO_ID"/>
+      </key>
+      <one-to-many class="entidades.CpMaterialNatDesp"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpMaterials" table="CP_MATERIAL">
+      <key>
+        <column length="2" name="ELEMENTO_ID"/>
+        <column length="2" name="SUBELEMENTO_ID"/>
+        <column length="2" name="DESDOBRAMENTO_ID"/>
+      </key>
+      <one-to-many class="entidades.CpMaterial"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.LcCombDisp" optimistic-lock="version" table="LC_COMB_DISP">
+    <id name="combDispId" type="int">
+      <column name="COMB_DISP_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpConcorrencia" fetch="select" name="cpConcorrencia">
+      <column name="GANO_ID"/>
+      <column name="TIPO_COMPRA_ID"/>
+      <column name="COMPRA_ID"/>
+      <column name="CREDOR_ID"/>
+      <column name="ITEM_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMaterial" fetch="select" name="cpMaterial">
+      <column name="COD_MATERIAL"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpRequisi" fetch="select" name="cpRequisi">
+      <column name="ANO_REQUISI"/>
+      <column name="NUMERO"/>
+    </many-to-one>
+    <many-to-one class="entidades.FrVeiculo" fetch="select" name="frVeiculo">
+      <column name="VEICULO_ID"/>
+    </many-to-one>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="quantSld" type="big_decimal">
+      <column name="QUANT_SLD" precision="0" scale="3"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="data" type="date">
+      <column length="10" name="DATA"/>
+    </property>
+    <property name="origem" type="string">
+      <column length="20" name="ORIGEM"/>
+    </property>
+    <property name="numRecebimento" type="java.lang.Integer">
+      <column name="NUM_RECEBIMENTO"/>
+    </property>
+    <property name="lcUsuario" type="string">
+      <column length="100" name="LC_USUARIO"/>
+    </property>
+    <property name="secretaria" type="string">
+      <column length="100" name="SECRETARIA"/>
+    </property>
+    <property name="tipoDocumento" type="java.lang.Integer">
+      <column name="TIPO_DOCUMENTO"/>
+    </property>
+    <property name="lexCardId" type="java.lang.Integer">
+      <column name="LEX_CARD_ID"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="lcCombDispBxes" table="LC_COMB_DISP_BX">
+      <key>
+        <column name="COMB_DISP_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.LcCombDispBx"/>
+    </set>
+  </class>
+</hibernate-mapping>

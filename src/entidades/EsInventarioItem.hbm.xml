@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsInventarioItem" optimistic-lock="version" table="ES_INVENTARIO_ITEM">
+    <id name="inventarioItemId" type="int">
+      <column name="INVENTARIO_ITEM_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpMaterial" fetch="select" name="cpMaterial">
+      <column name="MATERIAL_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsInventario" fetch="select" name="esInventario">
+      <column name="INVENTARIO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gusuario" fetch="select" name="gusuario">
+      <column length="5" name="GUSUARIO_ID"/>
+    </many-to-one>
+    <property name="itemId" type="int">
+      <column name="ITEM_ID" not-null="true"/>
+    </property>
+    <property name="vlUnit" type="big_decimal">
+      <column name="VL_UNIT" not-null="true" precision="15" scale="5"/>
+    </property>
+    <property name="saldo" type="big_decimal">
+      <column name="SALDO" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="inventario" type="big_decimal">
+      <column name="INVENTARIO" precision="15" scale="1"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarioItemDets" table="ES_INVENTARIO_ITEM_DET">
+      <key>
+        <column name="INVENTARIO_ITEM_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsInventarioItemDet"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentoItems" table="ES_RECEBIMENTO_ITEM">
+      <key>
+        <column name="INVENTARIO_ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimentoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRetiradaItems" table="ES_RETIRADA_ITEM">
+      <key>
+        <column name="INVENTARIO_ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRetiradaItem"/>
+    </set>
+  </class>
+</hibernate-mapping>

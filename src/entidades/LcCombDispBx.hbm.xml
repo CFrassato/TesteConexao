@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.LcCombDispBx" optimistic-lock="version" table="LC_COMB_DISP_BX">
+    <id name="combDispBxId" type="int">
+      <column name="COMB_DISP_BX_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.FrMotorista" fetch="select" name="frMotorista">
+      <column name="MOTORISTA_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.LcCombDisp" fetch="select" name="lcCombDisp">
+      <column name="COMB_DISP_ID" not-null="true"/>
+    </many-to-one>
+    <property name="datahora" type="timestamp">
+      <column length="19" name="DATAHORA" not-null="true"/>
+    </property>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="hodometro" type="int">
+      <column name="HODOMETRO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="autorizacao" type="string">
+      <column length="10" name="AUTORIZACAO"/>
+    </property>
+    <property name="tipoBx" type="string">
+      <column length="2" name="TIPO_BX" not-null="true">
+        <comment>CP - Compras ES - Estoque</comment>
+      </column>
+    </property>
+    <property name="observacao" type="string">
+      <column length="0" name="OBSERVACAO"/>
+    </property>
+    <property name="depositoId" type="java.lang.Integer">
+      <column name="DEPOSITO_ID"/>
+    </property>
+    <property name="convenioId" type="java.lang.Integer">
+      <column name="CONVENIO_ID"/>
+    </property>
+    <property name="lexCardId" type="java.lang.Integer">
+      <column name="LEX_CARD_ID"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpRequisis" table="CP_REQUISI">
+      <key>
+        <column name="COMB_DISP_BX_ID"/>
+      </key>
+      <one-to-many class="entidades.CpRequisi"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRetiradas" table="ES_RETIRADA">
+      <key>
+        <column name="COMB_DISP_BX_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRetirada"/>
+    </set>
+  </class>
+</hibernate-mapping>

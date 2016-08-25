@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.Guf" optimistic-lock="version" table="GUF">
+    <id name="gufId" type="string">
+      <column length="2" name="GUF_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="descricao" type="string">
+      <column length="30" name="DESCRICAO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esPacientes" table="ES_PACIENTE">
+      <key>
+        <column length="2" name="GUF_ID"/>
+      </key>
+      <one-to-many class="entidades.EsPaciente"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="gmunicipios" table="GMUNICIPIO">
+      <key>
+        <column length="2" name="GUF_ID"/>
+      </key>
+      <one-to-many class="entidades.Gmunicipio"/>
+    </set>
+  </class>
+</hibernate-mapping>

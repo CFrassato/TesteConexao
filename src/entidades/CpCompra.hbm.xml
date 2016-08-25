@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpCompra" optimistic-lock="version" table="CP_COMPRA">
+    <composite-id class="entidades.CpCompraId" name="id">
+      <key-property name="ganoId" type="int">
+        <column name="GANO_ID"/>
+      </key-property>
+      <key-property name="tipoCompraId" type="int">
+        <column name="TIPO_COMPRA_ID"/>
+      </key-property>
+      <key-property name="compraId" type="int">
+        <column name="COMPRA_ID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="entidades.CpTipoCompra" fetch="select" insert="false" name="cpTipoCompra" update="false">
+      <column name="TIPO_COMPRA_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gano" fetch="select" insert="false" name="gano" update="false">
+      <column name="GANO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="tceTipoCompra" type="java.lang.Character">
+      <column length="1" name="TCE_TIPO_COMPRA"/>
+    </property>
+    <property name="classifica" type="char">
+      <column length="1" name="CLASSIFICA" not-null="true"/>
+    </property>
+    <property name="modiCond" type="java.lang.Character">
+      <column length="1" name="MODI_COND"/>
+    </property>
+    <property name="situacao" type="java.lang.Character">
+      <column length="1" name="SITUACAO"/>
+    </property>
+    <property name="seqPubl" type="string">
+      <column length="2" name="SEQ_PUBL"/>
+    </property>
+    <property name="horas" type="string">
+      <column length="5" name="HORAS"/>
+    </property>
+    <property name="doe" type="string">
+      <column length="6" name="DOE"/>
+    </property>
+    <property name="edital" type="string">
+      <column length="9" name="EDITAL"/>
+    </property>
+    <property name="ata" type="string">
+      <column length="10" name="ATA"/>
+    </property>
+    <property name="validade" type="string">
+      <column length="10" name="VALIDADE"/>
+    </property>
+    <property name="observacao" type="string">
+      <column length="0" name="OBSERVACAO"/>
+    </property>
+    <property name="tpPrazo" type="string">
+      <column length="15" name="TP_PRAZO"/>
+    </property>
+    <property name="prazoDesc" type="string">
+      <column length="15" name="PRAZO_DESC"/>
+    </property>
+    <property name="dotacao" type="string">
+      <column length="53" name="DOTACAO"/>
+    </property>
+    <property name="arqText" type="string">
+      <column length="30" name="ARQ_TEXT"/>
+    </property>
+    <property name="advogado" type="string">
+      <column length="50" name="ADVOGADO"/>
+    </property>
+    <property name="jornal" type="string">
+      <column length="50" name="JORNAL"/>
+    </property>
+    <property name="condicao" type="string">
+      <column length="60" name="CONDICAO"/>
+    </property>
+    <property name="prazo" type="string">
+      <column length="60" name="PRAZO"/>
+    </property>
+    <property name="convenio" type="string">
+      <column length="100" name="CONVENIO"/>
+    </property>
+    <property name="assunto" type="string">
+      <column length="200" name="ASSUNTO"/>
+    </property>
+    <property name="vlPrevi" type="big_decimal">
+      <column name="VL_PREVI" precision="18"/>
+    </property>
+    <property name="codUni" type="java.lang.Integer">
+      <column name="COD_UNI"/>
+    </property>
+    <property name="dataAta" type="date">
+      <column length="10" name="DATA_ATA"/>
+    </property>
+    <property name="dtAber" type="date">
+      <column length="10" name="DT_ABER"/>
+    </property>
+    <property name="dtLimite" type="date">
+      <column length="10" name="DT_LIMITE"/>
+    </property>
+    <property name="dtPubl" type="date">
+      <column length="10" name="DT_PUBL"/>
+    </property>
+    <property name="dtPbDoe" type="date">
+      <column length="10" name="DT_PB_DOE"/>
+    </property>
+    <property name="encerrado" type="int">
+      <column name="ENCERRADO" not-null="true"/>
+    </property>
+    <property name="parecer" type="string">
+      <column length="0" name="PARECER"/>
+    </property>
+    <property name="cancelada" type="char">
+      <column length="1" name="CANCELADA" not-null="true"/>
+    </property>
+    <property name="dtCancela" type="date">
+      <column length="10" name="DT_CANCELA"/>
+    </property>
+    <property name="condParticipacao" type="string">
+      <column length="0" name="COND_PARTICIPACAO"/>
+    </property>
+    <property name="motCancela" type="string">
+      <column length="120" name="MOT_CANCELA"/>
+    </property>
+    <property name="veiCancela" type="string">
+      <column name="VEI_CANCELA"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="tipoPessoa" type="int">
+      <column name="TIPO_PESSOA" not-null="true"/>
+    </property>
+    <property name="numProcesso" type="string">
+      <column length="15" name="NUM_PROCESSO"/>
+    </property>
+    <property name="desertar" type="java.lang.Character">
+      <column length="1" name="DESERTAR"/>
+    </property>
+    <property name="dtParecerJur" type="date">
+      <column length="10" name="DT_PARECER_JUR"/>
+    </property>
+    <property name="dtParecerCpl" type="date">
+      <column length="10" name="DT_PARECER_CPL"/>
+    </property>
+    <property name="usaSrp" type="string">
+      <column length="1" name="USA_SRP" not-null="true"/>
+    </property>
+    <property name="excluirRel" type="string">
+      <column length="1" name="EXCLUIR_REL" not-null="true"/>
+    </property>
+    <property name="regimeExec" type="string">
+      <column length="10" name="REGIME_EXEC"/>
+    </property>
+    <property name="chkAplic" type="string">
+      <column length="1" name="CHK_APLIC" not-null="true"/>
+    </property>
+    <property name="liberarProposta" type="java.lang.Character">
+      <column length="1" name="LIBERAR_PROPOSTA"/>
+    </property>
+    <property name="plicNomearqpdf" type="string">
+      <column length="25" name="PLIC_NOMEARQPDF"/>
+    </property>
+    <property name="utilizaLeiCompl" type="string">
+      <column length="1" name="UTILIZA_LEI_COMPL" not-null="true">
+        <comment>Permite utilizar lei complementar 123/2006 na compra: S/N</comment>
+      </column>
+    </property>
+    <property name="plicParamicroempresa" type="string">
+      <column length="1" name="PLIC_PARAMICROEMPRESA" not-null="true"/>
+    </property>
+    <property name="tipoValor" type="java.lang.Integer">
+      <column name="TIPO_VALOR"/>
+    </property>
+    <property name="tpMaterialTce" type="java.lang.Integer">
+      <column name="TP_MATERIAL_TCE"/>
+    </property>
+    <property name="remume" type="java.lang.Character">
+      <column length="1" name="REMUME"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpSelecaos" table="CP_SELECAO">
+      <key>
+        <column name="GANO_ID" not-null="true"/>
+        <column name="TIPO_COMPRA_ID" not-null="true"/>
+        <column name="COMPRA_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpSelecao"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolMats" table="CP_SOL_MAT">
+      <key>
+        <column name="GANO_ID"/>
+        <column name="TIPO_COMPRA_ID"/>
+        <column name="COMPRA_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSolMat"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentos" table="ES_RECEBIMENTO">
+      <key>
+        <column name="GANO_ID"/>
+        <column name="TIPO_COMPRA_ID"/>
+        <column name="COMPRA_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimento"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpProtocolos" table="CP_PROTOCOLO">
+      <key>
+        <column name="GANO_ID"/>
+        <column name="TIPO_COMPRA_ID"/>
+        <column name="COMPRA_ID"/>
+      </key>
+      <one-to-many class="entidades.CpProtocolo"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpItems" table="CP_ITEM">
+      <key>
+        <column name="GANO_ID" not-null="true"/>
+        <column name="TIPO_COMPRA_ID" not-null="true"/>
+        <column name="COMPRA_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpRequisis" table="CP_REQUISI">
+      <key>
+        <column name="GANO_ID"/>
+        <column name="TIPO_COMPRA_ID"/>
+        <column name="COMPRA_ID"/>
+      </key>
+      <one-to-many class="entidades.CpRequisi"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolicitacaos" table="CP_SOLICITACAO">
+      <key>
+        <column name="COM_GANO_ID"/>
+        <column name="COM_TIPO_COMPRA_ID"/>
+        <column name="COM_COMPRA_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSolicitacao"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicacaoDiretas" table="ES_APLICACAO_DIRETA">
+      <key>
+        <column name="GANO_ID"/>
+        <column name="TIPO_COMPRA_ID"/>
+        <column name="COMPRA_ID"/>
+      </key>
+      <one-to-many class="entidades.EsAplicacaoDireta"/>
+    </set>
+  </class>
+</hibernate-mapping>

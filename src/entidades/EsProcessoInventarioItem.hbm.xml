@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsProcessoInventarioItem" optimistic-lock="version" table="ES_PROCESSO_INVENTARIO_ITEM">
+    <id name="processoInventarioItemId" type="int">
+      <column name="PROCESSO_INVENTARIO_ITEM_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.EsProcessoInventario" fetch="select" name="esProcessoInventario">
+      <column name="PROCESSO_INVENTARIO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="depositoId" type="int">
+      <column name="DEPOSITO_ID" not-null="true"/>
+    </property>
+    <property name="secretariaId" type="string">
+      <column length="7" name="SECRETARIA_ID" not-null="true"/>
+    </property>
+    <property name="atividade" type="string">
+      <column length="24" name="ATIVIDADE" not-null="true"/>
+    </property>
+    <property name="materialId" type="int">
+      <column name="MATERIAL_ID" not-null="true"/>
+    </property>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="quantFisica" type="big_decimal">
+      <column name="QUANT_FISICA" precision="15" scale="3"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentoItems" table="ES_RECEBIMENTO_ITEM">
+      <key>
+        <column name="PROCESSO_INVENTARIO_ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimentoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRetiradaItems" table="ES_RETIRADA_ITEM">
+      <key>
+        <column name="PROCESSO_INVENTARIO_ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRetiradaItem"/>
+    </set>
+  </class>
+</hibernate-mapping>

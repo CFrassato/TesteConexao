@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.FrVeiculo" optimistic-lock="version" table="FR_VEICULO">
+    <id name="veiculoId" type="int">
+      <column name="VEICULO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpCcusto" fetch="select" name="cpCcusto">
+      <column name="CCUSTO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.FrCarroceria" fetch="select" name="frCarroceria">
+      <column name="CARROCERIA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.FrCombustivel" fetch="select" name="frCombustivel">
+      <column name="COMBUSTIVEL_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.FrCor" fetch="select" name="frCor">
+      <column name="COR_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.FrEspecie" fetch="select" name="frEspecie">
+      <column name="ESPECIE_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.FrMarca" fetch="select" name="frMarca">
+      <column name="MARCA_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.FrModelo" fetch="select" name="frModelo">
+      <column name="MODELO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.FrTipo" fetch="select" name="frTipo">
+      <column name="TIPO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.FrVeiculoGrupo" fetch="select" name="frVeiculoGrupo">
+      <column name="VEICULO_GRUPO_ID"/>
+    </many-to-one>
+    <property name="veiculo" type="string">
+      <column length="100" name="VEICULO" not-null="true"/>
+    </property>
+    <property name="anoFab" type="int">
+      <column name="ANO_FAB" not-null="true"/>
+    </property>
+    <property name="anoMod" type="int">
+      <column name="ANO_MOD" not-null="true"/>
+    </property>
+    <property name="placa" type="string">
+      <column length="7" name="PLACA" not-null="true"/>
+    </property>
+    <property name="chassi" type="string">
+      <column length="20" name="CHASSI" not-null="true"/>
+    </property>
+    <property name="renavam" type="string">
+      <column length="11" name="RENAVAM" not-null="true"/>
+    </property>
+    <property name="paTipoId" type="string">
+      <column length="2" name="PA_TIPO_ID"/>
+    </property>
+    <property name="paSubtipoId" type="string">
+      <column length="2" name="PA_SUBTIPO_ID"/>
+    </property>
+    <property name="paVeiculoId" type="string">
+      <column length="7" name="PA_VEICULO_ID"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="ltsTanque" type="big_decimal">
+      <column name="LTS_TANQUE" precision="18"/>
+    </property>
+    <property name="mediaIdeal" type="big_decimal">
+      <column name="MEDIA_IDEAL" precision="18"/>
+    </property>
+    <property name="hodometro" type="int">
+      <column name="HODOMETRO" not-null="true"/>
+    </property>
+    <property name="cartao" type="string">
+      <column length="16" name="CARTAO"/>
+    </property>
+    <property name="horimetro" type="string">
+      <column length="1" name="HORIMETRO" not-null="true"/>
+    </property>
+    <property name="desativado" type="java.lang.Character">
+      <column length="1" name="DESATIVADO"/>
+    </property>
+    <property name="lcBloqueio" type="java.lang.Integer">
+      <column name="LC_BLOQUEIO"/>
+    </property>
+    <property name="finalidade" type="string">
+      <column length="200" name="FINALIDADE"/>
+    </property>
+    <property name="orgaoId" type="string">
+      <column length="4" name="ORGAO_ID"/>
+    </property>
+    <property name="unidadeId" type="string">
+      <column length="5" name="UNIDADE_ID"/>
+    </property>
+    <property name="tipoVeiculo" type="java.lang.Integer">
+      <column name="TIPO_VEICULO"/>
+    </property>
+    <property name="lcMonitor" type="java.lang.Integer">
+      <column name="LC_MONITOR"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicDiretaItemCombs" table="ES_APLIC_DIRETA_ITEM_COMB">
+      <key>
+        <column name="VEICULO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsAplicDiretaItemComb"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esAvaliacaoItensVeiculos" table="ES_AVALIACAO_ITENS_VEICULO">
+      <key>
+        <column name="VEICULO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsAvaliacaoItensVeiculo"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcCombDisps" table="LC_COMB_DISP">
+      <key>
+        <column name="VEICULO_ID"/>
+      </key>
+      <one-to-many class="entidades.LcCombDisp"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esAcessoriosVeiculos" table="ES_ACESSORIOS_VEICULO">
+      <key>
+        <column name="VEICULO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsAcessoriosVeiculo"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esMultas" table="ES_MULTA">
+      <key>
+        <column name="VEICULO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsMulta"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esMotoristaVeics" table="ES_MOTORISTA_VEIC">
+      <key>
+        <column name="VEICULO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsMotoristaVeic"/>
+    </set>
+  </class>
+</hibernate-mapping>

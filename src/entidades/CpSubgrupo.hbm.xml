@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpSubgrupo" optimistic-lock="version" table="CP_SUBGRUPO">
+    <id name="subgrupoId" type="int">
+      <column name="SUBGRUPO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpGrupo" fetch="select" name="cpGrupo">
+      <column name="GRUPO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="subgrupoSeq" type="int">
+      <column name="SUBGRUPO_SEQ" not-null="true"/>
+    </property>
+    <property name="subgrupo" type="string">
+      <column length="40" name="SUBGRUPO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpMaterials" table="CP_MATERIAL">
+      <key>
+        <column name="SUBGRUPO_ID"/>
+      </key>
+      <one-to-many class="entidades.CpMaterial"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolicitacaos" table="CP_SOLICITACAO">
+      <key>
+        <column name="SUBGRUPO_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSolicitacao"/>
+    </set>
+  </class>
+</hibernate-mapping>

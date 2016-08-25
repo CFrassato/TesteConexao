@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsSolVei" optimistic-lock="version" table="ES_SOL_VEI">
+    <id name="esSolVeiId" type="int">
+      <column name="ES_SOL_VEI_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="tipo" type="java.lang.Character">
+      <column length="1" name="TIPO"/>
+    </property>
+    <property name="data" type="date">
+      <column length="10" name="DATA"/>
+    </property>
+    <property name="veiculoId" type="java.lang.Integer">
+      <column name="VEICULO_ID"/>
+    </property>
+    <property name="orgaoId" type="string">
+      <column length="7" name="ORGAO_ID"/>
+    </property>
+    <property name="unidadeId" type="string">
+      <column length="5" name="UNIDADE_ID"/>
+    </property>
+    <property name="destino" type="string">
+      <column name="DESTINO"/>
+    </property>
+    <property name="tipoServico" type="string">
+      <column name="TIPO_SERVICO"/>
+    </property>
+    <property name="objetivoServ" type="string">
+      <column name="OBJETIVO_SERV"/>
+    </property>
+    <property name="hora" type="time">
+      <column length="8" name="HORA"/>
+    </property>
+    <property name="motoristaId" type="java.lang.Integer">
+      <column name="MOTORISTA_ID"/>
+    </property>
+    <property name="orgaoUnidadeId" type="java.lang.Integer">
+      <column name="ORGAO_UNIDADE_ID"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsMaterialEstocado" optimistic-lock="version" table="ES_MATERIAL_ESTOCADO">
+    <id name="materialEstocadoId" type="int">
+      <column name="MATERIAL_ESTOCADO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpDespesa" fetch="select" name="cpDespesa">
+      <column name="GANO_ID"/>
+      <column length="53" name="DESPESA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMaterial" fetch="select" name="cpMaterial">
+      <column name="MATERIAL_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpSecretaria" fetch="select" name="cpSecretaria">
+      <column length="7" name="SECRETARIA_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsDeposito" fetch="select" name="esDeposito">
+      <column name="DEPOSITO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="atividade" type="string">
+      <column length="30" name="ATIVIDADE"/>
+    </property>
+    <property name="saldo" type="big_decimal">
+      <column name="SALDO" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="abastecimento" type="int">
+      <column name="ABASTECIMENTO" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

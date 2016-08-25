@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsAvaliacaoItensVeiculo" optimistic-lock="version" table="ES_AVALIACAO_ITENS_VEICULO">
+    <composite-id class="entidades.EsAvaliacaoItensVeiculoId" name="id">
+      <key-property name="secretariaId" type="string">
+        <column length="7" name="SECRETARIA_ID"/>
+      </key-property>
+      <key-property name="veiculoId" type="int">
+        <column name="VEICULO_ID"/>
+      </key-property>
+      <key-property name="itemId" type="int">
+        <column name="ITEM_ID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="entidades.CpSecretaria" fetch="select" insert="false" name="cpSecretaria" update="false">
+      <column length="7" name="SECRETARIA_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsItensVeiculo" fetch="select" insert="false" name="esItensVeiculo" update="false">
+      <column name="ITEM_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.FrVeiculo" fetch="select" insert="false" name="frVeiculo" update="false">
+      <column name="VEICULO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="data" type="date">
+      <column length="10" name="DATA" not-null="true"/>
+    </property>
+    <property name="observacao" type="string">
+      <column length="500" name="OBSERVACAO"/>
+    </property>
+    <property name="avaliacao" type="char">
+      <column length="1" name="AVALIACAO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

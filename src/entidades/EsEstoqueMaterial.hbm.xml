@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsEstoqueMaterial" optimistic-lock="version" table="ES_ESTOQUE_MATERIAL">
+    <composite-id class="entidades.EsEstoqueMaterialId" name="id">
+      <key-property name="materialId" type="int">
+        <column name="MATERIAL_ID"/>
+      </key-property>
+      <key-property name="depositoId" type="int">
+        <column name="DEPOSITO_ID"/>
+      </key-property>
+    </composite-id>
+    <property name="estoqueMinimo" type="big_decimal">
+      <column name="ESTOQUE_MINIMO" precision="18"/>
+    </property>
+    <property name="estoqueMaximo" type="big_decimal">
+      <column name="ESTOQUE_MAXIMO" precision="18"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

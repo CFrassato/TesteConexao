@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpItem" optimistic-lock="version" table="CP_ITEM">
+    <composite-id class="entidades.CpItemId" name="id">
+      <key-property name="ganoId" type="int">
+        <column name="GANO_ID"/>
+      </key-property>
+      <key-property name="tipoCompraId" type="int">
+        <column name="TIPO_COMPRA_ID"/>
+      </key-property>
+      <key-property name="compraId" type="int">
+        <column name="COMPRA_ID"/>
+      </key-property>
+      <key-property name="itemId" type="int">
+        <column name="ITEM_ID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="entidades.CpCompra" fetch="select" insert="false" name="cpCompra" update="false">
+      <column name="GANO_ID" not-null="true"/>
+      <column name="TIPO_COMPRA_ID" not-null="true"/>
+      <column name="COMPRA_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpDespesa" fetch="select" name="cpDespesa">
+      <column name="GANO_DESP_ID" not-null="true"/>
+      <column length="53" name="DESPESA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMaterial" fetch="select" name="cpMaterial">
+      <column name="MATERIAL_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMaterialNatDesp" fetch="select" name="cpMaterialNatDesp">
+      <column name="MATERIAL_NAT_DESP_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMedida" fetch="select" name="cpMedida">
+      <column name="MEDIDA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpSolicitacaoItem" fetch="select" name="cpSolicitacaoItem">
+      <column name="SOL_GANO_ID"/>
+      <column length="7" name="SOL_SECRETARIA_ID"/>
+      <column name="SOL_SOLICITACAO_ID"/>
+      <column name="SOL_ITEM"/>
+    </many-to-one>
+    <many-to-one class="entidades.OrNatDesp" fetch="select" name="orNatDesp">
+      <column length="10" name="REDUZIDO"/>
+    </many-to-one>
+    <property name="situacao" type="java.lang.Character">
+      <column length="1" name="SITUACAO"/>
+    </property>
+    <property name="codigos" type="string">
+      <column length="2" name="CODIGOS"/>
+    </property>
+    <property name="codigod" type="string">
+      <column length="2" name="CODIGOD"/>
+    </property>
+    <property name="codigoe" type="string">
+      <column length="2" name="CODIGOE"/>
+    </property>
+    <property name="unid" type="string">
+      <column length="5" name="UNID"/>
+    </property>
+    <property name="vencedor" type="string">
+      <column length="5" name="VENCEDOR"/>
+    </property>
+    <property name="material" type="string">
+      <column length="0" name="MATERIAL"/>
+    </property>
+    <property name="valEsti" type="big_decimal">
+      <column name="VAL_ESTI" precision="18"/>
+    </property>
+    <property name="ultlinesp" type="big_decimal">
+      <column name="ULTLINESP" precision="18"/>
+    </property>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="quantPed" type="big_decimal">
+      <column name="QUANT_PED" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="prTotal" type="big_decimal">
+      <column name="PR_TOTAL" not-null="true" precision="18"/>
+    </property>
+    <property name="prUnit" type="big_decimal">
+      <column name="PR_UNIT" not-null="true" precision="15" scale="5"/>
+    </property>
+    <property name="limTotal" type="big_decimal">
+      <column name="LIM_TOTAL" not-null="true" precision="18"/>
+    </property>
+    <property name="limUnit" type="big_decimal">
+      <column name="LIM_UNIT" not-null="true" precision="15" scale="5"/>
+    </property>
+    <property name="atividade" type="string">
+      <column length="33" name="ATIVIDADE"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="verSldQtd" type="char">
+      <column length="1" name="VER_SLD_QTD" not-null="true"/>
+    </property>
+    <property name="itemGrp" type="java.lang.Integer">
+      <column name="ITEM_GRP"/>
+    </property>
+    <property name="dtCancelado" type="date">
+      <column length="10" name="DT_CANCELADO"/>
+    </property>
+    <property name="receitaId" type="string">
+      <column length="10" name="RECEITA_ID"/>
+    </property>
+    <property name="projAtivId" type="string">
+      <column length="4" name="PROJ_ATIV_ID"/>
+    </property>
+    <property name="desertoSn" type="string">
+      <column length="1" name="DESERTO_SN" not-null="true"/>
+    </property>
+    <property name="fracassadoSn" type="string">
+      <column length="1" name="FRACASSADO_SN" not-null="true"/>
+    </property>
+    <property name="motFracasso" type="string">
+      <column length="100" name="MOT_FRACASSO"/>
+    </property>
+    <property name="codigoTec" type="java.lang.Integer">
+      <column name="CODIGO_TEC"/>
+    </property>
+    <property name="descricaoTec" type="binary">
+      <column name="DESCRICAO_TEC"/>
+    </property>
+    <property name="secretariaId" type="string">
+      <column length="7" name="SECRETARIA_ID"/>
+    </property>
+    <property name="solicitacaoId" type="java.lang.Integer">
+      <column name="SOLICITACAO_ID"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpConcorrencias" table="CP_CONCORRENCIA">
+      <key>
+        <column name="GANO_ID" not-null="true"/>
+        <column name="TIPO_COMPRA_ID" not-null="true"/>
+        <column name="COMPRA_ID" not-null="true"/>
+        <column name="ITEM_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpConcorrencia"/>
+    </set>
+  </class>
+</hibernate-mapping>

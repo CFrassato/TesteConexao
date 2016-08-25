@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsProcessoInventario" optimistic-lock="version" table="ES_PROCESSO_INVENTARIO">
+    <id name="processoInventarioId" type="int">
+      <column name="PROCESSO_INVENTARIO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.EsComissaoInventario" fetch="select" name="esComissaoInventario">
+      <column name="COMISSAO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsComInventarioMembro" fetch="select" name="esComInventarioMembro">
+      <column name="COM_MEMBRO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="data" type="date">
+      <column length="10" name="DATA" not-null="true"/>
+    </property>
+    <property name="gusuarioId" type="string">
+      <column length="5" name="GUSUARIO_ID" not-null="true"/>
+    </property>
+    <property name="motivo" type="string">
+      <column length="500" name="MOTIVO" not-null="true"/>
+    </property>
+    <property name="status" type="string">
+      <column length="1" name="STATUS" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esRetiradas" table="ES_RETIRADA">
+      <key>
+        <column name="PROCESSO_INVENTARIO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRetirada"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esProcessoInventarioItems" table="ES_PROCESSO_INVENTARIO_ITEM">
+      <key>
+        <column name="PROCESSO_INVENTARIO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsProcessoInventarioItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentos" table="ES_RECEBIMENTO">
+      <key>
+        <column name="PROCESSO_INVENTARIO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimento"/>
+    </set>
+  </class>
+</hibernate-mapping>

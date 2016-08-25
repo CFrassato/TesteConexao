@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpConcorrencia" optimistic-lock="version" table="CP_CONCORRENCIA">
+    <composite-id class="entidades.CpConcorrenciaId" name="id">
+      <key-property name="ganoId" type="int">
+        <column name="GANO_ID"/>
+      </key-property>
+      <key-property name="tipoCompraId" type="int">
+        <column name="TIPO_COMPRA_ID"/>
+      </key-property>
+      <key-property name="compraId" type="int">
+        <column name="COMPRA_ID"/>
+      </key-property>
+      <key-property name="credorId" type="int">
+        <column name="CREDOR_ID"/>
+      </key-property>
+      <key-property name="itemId" type="int">
+        <column name="ITEM_ID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="entidades.CpItem" fetch="select" insert="false" name="cpItem" update="false">
+      <column name="GANO_ID" not-null="true"/>
+      <column name="TIPO_COMPRA_ID" not-null="true"/>
+      <column name="COMPRA_ID" not-null="true"/>
+      <column name="ITEM_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpSelecao" fetch="select" insert="false" name="cpSelecao" update="false">
+      <column name="GANO_ID" not-null="true"/>
+      <column name="TIPO_COMPRA_ID" not-null="true"/>
+      <column name="COMPRA_ID" not-null="true"/>
+      <column name="CREDOR_ID" not-null="true"/>
+    </many-to-one>
+    <property name="situacao" type="string">
+      <column length="2" name="SITUACAO"/>
+    </property>
+    <property name="motivo" type="string">
+      <column length="2" name="MOTIVO"/>
+    </property>
+    <property name="proposta" type="string">
+      <column length="3" name="PROPOSTA"/>
+    </property>
+    <property name="marca" type="string">
+      <column length="35" name="MARCA"/>
+    </property>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="fornecer" type="big_decimal">
+      <column name="FORNECER" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="prUnit" type="big_decimal">
+      <column name="PR_UNIT" not-null="true" precision="15" scale="5"/>
+    </property>
+    <property name="prTotal" type="big_decimal">
+      <column name="PR_TOTAL" precision="18"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicacaoDiretaItems" table="ES_APLICACAO_DIRETA_ITEM">
+      <key>
+        <column name="COM_GANO_ID"/>
+        <column name="COM_TIPO_COMPRA_ID"/>
+        <column name="COM_COMPRA_ID"/>
+        <column name="COM_CREDOR_ID"/>
+        <column name="COM_ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.EsAplicacaoDiretaItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentoItems" table="ES_RECEBIMENTO_ITEM">
+      <key>
+        <column name="COM_GANO_ID"/>
+        <column name="COM_TIPO_COMPRA_ID"/>
+        <column name="COM_COMPRA_ID"/>
+        <column name="COM_CREDOR_ID"/>
+        <column name="COM_ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimentoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcCombDisps" table="LC_COMB_DISP">
+      <key>
+        <column name="GANO_ID"/>
+        <column name="TIPO_COMPRA_ID"/>
+        <column name="COMPRA_ID"/>
+        <column name="CREDOR_ID"/>
+        <column name="ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.LcCombDisp"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSoItenses" table="CP_SO_ITENS">
+      <key>
+        <column name="GANO_ID"/>
+        <column name="TIPO_COMPRA_ID"/>
+        <column name="COMPRA_ID"/>
+        <column name="CREDOR_ID"/>
+        <column name="ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSoItens"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolicitacaoItems" table="CP_SOLICITACAO_ITEM">
+      <key>
+        <column name="CONC_GANO_ID"/>
+        <column name="CONC_TIPO_COMPRA_ID"/>
+        <column name="CONC_COMPRA_ID"/>
+        <column name="CONC_CREDOR_ID"/>
+        <column name="CONC_ITEM_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSolicitacaoItem"/>
+    </set>
+  </class>
+</hibernate-mapping>

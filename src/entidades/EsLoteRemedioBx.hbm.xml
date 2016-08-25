@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsLoteRemedioBx" optimistic-lock="version" table="ES_LOTE_REMEDIO_BX">
+    <id name="loteRemedioBxId" type="int">
+      <column name="LOTE_REMEDIO_BX_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpCcusto" fetch="select" name="cpCcusto">
+      <column name="CCUSTO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMaterial" fetch="select" name="cpMaterial">
+      <column name="MATERIAL_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsLoteRemedio" fetch="select" name="esLoteRemedio">
+      <column name="LOTE_REMEDIO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsPaciente" fetch="select" name="esPaciente">
+      <column name="PACIENTE_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsRetiradaItem" fetch="select" name="esRetiradaItem">
+      <column name="RET_ITEM_ID" not-null="true"/>
+    </many-to-one>
+    <property name="quant" type="big_decimal">
+      <column name="QUANT" not-null="true" precision="15" scale="3"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="medicoId" type="string">
+      <column length="6" name="MEDICO_ID"/>
+    </property>
+    <property name="atendenteId" type="string">
+      <column length="6" name="ATENDENTE_ID"/>
+    </property>
+  </class>
+</hibernate-mapping>

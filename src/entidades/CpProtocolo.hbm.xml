@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpProtocolo" optimistic-lock="version" table="CP_PROTOCOLO">
+    <composite-id class="entidades.CpProtocoloId" name="id">
+      <key-property name="anoProtoco" type="int">
+        <column name="ANO_PROTOCO"/>
+      </key-property>
+      <key-property name="numero" type="int">
+        <column name="NUMERO"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="entidades.CpCompra" fetch="select" name="cpCompra">
+      <column name="GANO_ID"/>
+      <column name="TIPO_COMPRA_ID"/>
+      <column name="COMPRA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpTipoCompra" fetch="select" name="cpTipoCompra">
+      <column name="TIPO" not-null="true"/>
+    </many-to-one>
+    <property name="tpProto" type="char">
+      <column length="1" name="TP_PROTO" not-null="true"/>
+    </property>
+    <property name="credor" type="int">
+      <column name="CREDOR" not-null="true"/>
+    </property>
+    <property name="data" type="date">
+      <column length="10" name="DATA" not-null="true"/>
+    </property>
+    <property name="vencto" type="date">
+      <column length="10" name="VENCTO"/>
+    </property>
+    <property name="compl" type="string">
+      <column length="0" name="COMPL"/>
+    </property>
+    <property name="valor" type="big_decimal">
+      <column name="VALOR" not-null="true" precision="15"/>
+    </property>
+    <property name="empenho" type="string">
+      <column length="7" name="EMPENHO"/>
+    </property>
+    <property name="empenhado" type="big_decimal">
+      <column name="EMPENHADO" not-null="true" precision="15"/>
+    </property>
+    <property name="situacao" type="java.lang.Character">
+      <column length="1" name="SITUACAO"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolMatsForFkCpSolMatCpProtocolo2" table="CP_SOL_MAT">
+      <key>
+        <column name="ANOPROTO2"/>
+        <column name="PROTO2"/>
+      </key>
+      <one-to-many class="entidades.CpSolMat"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolMatsForFkCpSolMatCpProtocolo1" table="CP_SOL_MAT">
+      <key>
+        <column name="ANOPROTO1"/>
+        <column name="PROTO1"/>
+      </key>
+      <one-to-many class="entidades.CpSolMat"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpRepresentante" optimistic-lock="version" table="CP_REPRESENTANTE">
+    <id name="representanteId" type="int">
+      <column name="REPRESENTANTE_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.OrCredor" fetch="select" name="orCredor">
+      <column length="5" name="CREDOR_ID" not-null="true"/>
+    </many-to-one>
+    <property name="representante" type="string">
+      <column length="60" name="REPRESENTANTE" not-null="true"/>
+    </property>
+    <property name="rg" type="string">
+      <column length="20" name="RG"/>
+    </property>
+    <property name="cpf" type="string">
+      <column length="11" name="CPF"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpSelecaos" table="CP_SELECAO">
+      <key>
+        <column name="REPRESENTANTE_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSelecao"/>
+    </set>
+  </class>
+</hibernate-mapping>

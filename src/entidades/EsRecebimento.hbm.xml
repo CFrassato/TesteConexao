@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsRecebimento" optimistic-lock="version" table="ES_RECEBIMENTO">
+    <id name="recId" type="int">
+      <column name="REC_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpCompra" fetch="select" name="cpCompra">
+      <column name="GANO_ID"/>
+      <column name="TIPO_COMPRA_ID"/>
+      <column name="COMPRA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpRequisi" fetch="select" name="cpRequisi">
+      <column name="ANO_REQUISI"/>
+      <column name="NUMERO"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpSecretaria" fetch="select" name="cpSecretaria">
+      <column length="7" name="SECRETARIA_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpSolMat" fetch="select" name="cpSolMat">
+      <column name="SOL_EXERCICIO"/>
+      <column length="7" name="SOL_SECRETARIA"/>
+      <column name="SOL_NUMERO"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsDeposito" fetch="select" name="esDeposito">
+      <column name="DEPOSITO_ID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsProcessoInventario" fetch="select" name="esProcessoInventario">
+      <column name="PROCESSO_INVENTARIO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsTipoAplicacao" fetch="select" name="esTipoAplicacao">
+      <column name="TIPO" not-null="true"/>
+    </many-to-one>
+    <property name="data" type="date">
+      <column length="10" name="DATA" not-null="true"/>
+    </property>
+    <property name="nfNumero" type="string">
+      <column length="15" name="NF_NUMERO"/>
+    </property>
+    <property name="nfSerie" type="string">
+      <column length="10" name="NF_SERIE"/>
+    </property>
+    <property name="nfEmissao" type="date">
+      <column length="10" name="NF_EMISSAO"/>
+    </property>
+    <property name="credorId" type="int">
+      <column name="CREDOR_ID" not-null="true"/>
+    </property>
+    <property name="atividade" type="string">
+      <column length="24" name="ATIVIDADE"/>
+    </property>
+    <property name="gusuarioId" type="string">
+      <column length="5" name="GUSUARIO_ID"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="empenho" type="string">
+      <column length="7" name="EMPENHO"/>
+    </property>
+    <property name="desconto" type="big_decimal">
+      <column name="DESCONTO" precision="18"/>
+    </property>
+    <property name="obs" type="string">
+      <column length="0" name="OBS"/>
+    </property>
+    <property name="lcBloqueio" type="java.lang.Integer">
+      <column name="LC_BLOQUEIO"/>
+    </property>
+    <property name="gacessoInclusao" type="timestamp">
+      <column length="19" name="GACESSO_INCLUSAO"/>
+    </property>
+    <property name="motivoAlteracao" type="string">
+      <column length="200" name="MOTIVO_ALTERACAO"/>
+    </property>
+    <property name="abastecimento" type="int">
+      <column name="ABASTECIMENTO" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esMovimentacaoContabs" table="ES_MOVIMENTACAO_CONTAB">
+      <key>
+        <column name="REC_ID"/>
+      </key>
+      <one-to-many class="entidades.EsMovimentacaoContab"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentoItems" table="ES_RECEBIMENTO_ITEM">
+      <key>
+        <column name="REC_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimentoItem"/>
+    </set>
+  </class>
+</hibernate-mapping>

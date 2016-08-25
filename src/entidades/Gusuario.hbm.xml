@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.Gusuario" optimistic-lock="version" table="GUSUARIO">
+    <id name="gusuarioId" type="string">
+      <column length="5" name="GUSUARIO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.Ggrupo" fetch="select" name="ggrupo">
+      <column length="5" name="GGRUPO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="nome" type="string">
+      <column length="40" name="NOME" not-null="true"/>
+    </property>
+    <property name="nomeLogin" type="string">
+      <column length="15" name="NOME_LOGIN" not-null="true" unique="true"/>
+    </property>
+    <property name="cpfUsuario" type="string">
+      <column length="11" name="CPF_USUARIO" not-null="true"/>
+    </property>
+    <property name="senha" type="string">
+      <column length="64" name="SENHA" not-null="true"/>
+    </property>
+    <property name="palavraSenha" type="string">
+      <column length="100" name="PALAVRA_SENHA"/>
+    </property>
+    <property name="alterarSenha" type="java.lang.Character">
+      <column length="1" name="ALTERAR_SENHA"/>
+    </property>
+    <property name="gusuarioAtivo" type="char">
+      <column length="1" name="GUSUARIO_ATIVO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="tentativa" type="int">
+      <column name="TENTATIVA" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarioItems" table="ES_INVENTARIO_ITEM">
+      <key>
+        <column length="5" name="GUSUARIO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsInventarioItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRetiradas" table="ES_RETIRADA">
+      <key>
+        <column length="5" name="USU_CANCELA"/>
+      </key>
+      <one-to-many class="entidades.EsRetirada"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpRequisis" table="CP_REQUISI">
+      <key>
+        <column length="5" name="GUSUARIO_ID"/>
+      </key>
+      <one-to-many class="entidades.CpRequisi"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarioItemLotes" table="ES_INVENTARIO_ITEM_LOTE">
+      <key>
+        <column length="5" name="GUSUARIO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsInventarioItemLote"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esDepositoUsuarios" table="ES_DEPOSITO_USUARIO">
+      <key>
+        <column length="5" name="GUSUARIO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsDepositoUsuario"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarioItemDets" table="ES_INVENTARIO_ITEM_DET">
+      <key>
+        <column length="5" name="GUSUARIO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsInventarioItemDet"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarios" table="ES_INVENTARIO">
+      <key>
+        <column length="5" name="GUSUARIO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsInventario"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicacaoDiretas" table="ES_APLICACAO_DIRETA">
+      <key>
+        <column length="5" name="GUSUARIO_ID"/>
+      </key>
+      <one-to-many class="entidades.EsAplicacaoDireta"/>
+    </set>
+  </class>
+</hibernate-mapping>

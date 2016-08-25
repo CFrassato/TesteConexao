@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsMovimentacaoContab" optimistic-lock="version" table="ES_MOVIMENTACAO_CONTAB">
+    <id name="movimentoId" type="int">
+      <column name="MOVIMENTO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.EsAplicacaoDireta" fetch="select" name="esAplicacaoDireta">
+      <column name="APLICACAO_DIRETA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsRecebimento" fetch="select" name="esRecebimento">
+      <column name="REC_ID"/>
+    </many-to-one>
+    <property name="emLiquidacao" type="int">
+      <column name="EM_LIQUIDACAO" not-null="true"/>
+    </property>
+    <property name="data" type="date">
+      <column length="10" name="DATA" not-null="true"/>
+    </property>
+    <property name="exercicio" type="string">
+      <column length="4" name="EXERCICIO"/>
+    </property>
+    <property name="empenho" type="string">
+      <column length="7" name="EMPENHO"/>
+    </property>
+    <property name="vlTotal" type="big_decimal">
+      <column name="VL_TOTAL" precision="18"/>
+    </property>
+    <property name="fonteDestinacaoId" type="java.lang.Integer">
+      <column name="FONTE_DESTINACAO_ID"/>
+    </property>
+    <property name="natDespId" type="string">
+      <column length="10" name="NAT_DESP_ID"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

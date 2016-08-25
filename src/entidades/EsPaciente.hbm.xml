@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsPaciente" optimistic-lock="version" table="ES_PACIENTE">
+    <id name="pacienteId" type="int">
+      <column name="PACIENTE_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.Gbairro" fetch="select" name="gbairro">
+      <column length="4" name="GBAIRRO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gcbo" fetch="select" name="gcbo">
+      <column length="7" name="GCBO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.Glograd" fetch="select" name="glograd">
+      <column length="6" name="GLOGRAD_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gmunicipio" fetch="select" name="gmunicipio">
+      <column name="GMUNICIPIO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.Gparentesco" fetch="select" name="gparentesco">
+      <column name="GPAR_CODIGO"/>
+    </many-to-one>
+    <many-to-one class="entidades.Guf" fetch="select" name="guf">
+      <column length="2" name="GUF_ID"/>
+    </many-to-one>
+    <property name="paciente" type="string">
+      <column length="50" name="PACIENTE"/>
+    </property>
+    <property name="endereco" type="string">
+      <column length="50" name="ENDERECO"/>
+    </property>
+    <property name="bairro" type="string">
+      <column length="30" name="BAIRRO"/>
+    </property>
+    <property name="cep" type="string">
+      <column length="9" name="CEP"/>
+    </property>
+    <property name="fone" type="string">
+      <column length="14" name="FONE"/>
+    </property>
+    <property name="data" type="date">
+      <column length="10" name="DATA"/>
+    </property>
+    <property name="cpf" type="string">
+      <column length="18" name="CPF"/>
+    </property>
+    <property name="rg" type="string">
+      <column length="20" name="RG"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="pacientePaiCodigo" type="java.lang.Integer">
+      <column name="PACIENTE_PAI_CODIGO"/>
+    </property>
+    <property name="prontuario" type="string">
+      <column length="10" name="PRONTUARIO"/>
+    </property>
+    <property name="numero" type="string">
+      <column length="20" name="NUMERO"/>
+    </property>
+    <property name="complemento" type="string">
+      <column length="100" name="COMPLEMENTO"/>
+    </property>
+    <property name="sexo" type="string">
+      <column length="1" name="SEXO"/>
+    </property>
+    <property name="estadoCivil" type="java.lang.Integer">
+      <column name="ESTADO_CIVIL"/>
+    </property>
+    <property name="telefone01" type="string">
+      <column length="20" name="TELEFONE_01"/>
+    </property>
+    <property name="telefone02" type="string">
+      <column length="20" name="TELEFONE_02"/>
+    </property>
+    <property name="contato" type="string">
+      <column length="100" name="CONTATO"/>
+    </property>
+    <property name="dtNascimento" type="date">
+      <column length="10" name="DT_NASCIMENTO"/>
+    </property>
+    <property name="cadSus" type="string">
+      <column length="15" name="CAD_SUS"/>
+    </property>
+    <property name="pai" type="string">
+      <column length="100" name="PAI"/>
+    </property>
+    <property name="mae" type="string">
+      <column length="100" name="MAE"/>
+    </property>
+    <property name="tipoSanguineo" type="string">
+      <column length="2" name="TIPO_SANGUINEO"/>
+    </property>
+    <property name="fatorRh" type="string">
+      <column length="1" name="FATOR_RH"/>
+    </property>
+    <property name="certidaoNascimento" type="string">
+      <column length="40" name="CERTIDAO_NASCIMENTO"/>
+    </property>
+    <property name="gusuarioId" type="string">
+      <column length="5" name="GUSUARIO_ID"/>
+    </property>
+    <property name="gtipo" type="string">
+      <column length="1" name="GTIPO"/>
+    </property>
+    <property name="cadSusTipo" type="java.lang.Integer">
+      <column name="CAD_SUS_TIPO"/>
+    </property>
+    <property name="img" type="string">
+      <column length="250" name="IMG"/>
+    </property>
+    <property name="imagem" type="binary">
+      <column name="IMAGEM"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarioItemLotes" table="ES_INVENTARIO_ITEM_LOTE">
+      <key>
+        <column name="PACIENTE_ID"/>
+      </key>
+      <one-to-many class="entidades.EsInventarioItemLote"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esLoteRemedioBxes" table="ES_LOTE_REMEDIO_BX">
+      <key>
+        <column name="PACIENTE_ID"/>
+      </key>
+      <one-to-many class="entidades.EsLoteRemedioBx"/>
+    </set>
+  </class>
+</hibernate-mapping>

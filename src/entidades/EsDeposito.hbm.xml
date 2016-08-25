@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsDeposito" optimistic-lock="version" table="ES_DEPOSITO">
+    <id name="depositoId" type="int">
+      <column name="DEPOSITO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="deposito" type="string">
+      <column length="100" name="DEPOSITO" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esDepositoUsuarios" table="ES_DEPOSITO_USUARIO">
+      <key>
+        <column name="DEPOSITO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsDepositoUsuario"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esDepositoSecretarias" table="ES_DEPOSITO_SECRETARIA">
+      <key>
+        <column name="DEPOSITO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsDepositoSecretaria"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarios" table="ES_INVENTARIO">
+      <key>
+        <column name="DEPOSITO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsInventario"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esLanctosForDepositoIddestino" table="ES_LANCTO">
+      <key>
+        <column name="DEPOSITO_IDDESTINO"/>
+      </key>
+      <one-to-many class="entidades.EsLancto"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esMaterialEstocados" table="ES_MATERIAL_ESTOCADO">
+      <key>
+        <column name="DEPOSITO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsMaterialEstocado"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRetiradas" table="ES_RETIRADA">
+      <key>
+        <column name="DEPOSITO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsRetirada"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicacaoDiretas" table="ES_APLICACAO_DIRETA">
+      <key>
+        <column name="DEPOSITO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsAplicacaoDireta"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentos" table="ES_RECEBIMENTO">
+      <key>
+        <column name="DEPOSITO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimento"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRequisicaos" table="ES_REQUISICAO">
+      <key>
+        <column name="DEPOSITO_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsRequisicao"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esLanctosForDepositoIdorigem" table="ES_LANCTO">
+      <key>
+        <column name="DEPOSITO_IDORIGEM"/>
+      </key>
+      <one-to-many class="entidades.EsLancto"/>
+    </set>
+  </class>
+</hibernate-mapping>

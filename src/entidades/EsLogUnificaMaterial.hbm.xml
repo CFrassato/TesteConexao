@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsLogUnificaMaterial" optimistic-lock="version" table="ES_LOG_UNIFICA_MATERIAL">
+    <id name="logId" type="int">
+      <column name="LOG_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="materialId" type="java.lang.Integer">
+      <column name="MATERIAL_ID"/>
+    </property>
+    <property name="material" type="string">
+      <column length="2039" name="MATERIAL"/>
+    </property>
+    <property name="elementoId" type="string">
+      <column length="2" name="ELEMENTO_ID"/>
+    </property>
+    <property name="subelementoId" type="string">
+      <column length="2" name="SUBELEMENTO_ID"/>
+    </property>
+    <property name="desdobramentoId" type="string">
+      <column length="2" name="DESDOBRAMENTO_ID"/>
+    </property>
+    <property name="materialIdFinal" type="java.lang.Integer">
+      <column name="MATERIAL_ID_FINAL"/>
+    </property>
+    <property name="materialFinal" type="string">
+      <column length="2039" name="MATERIAL_FINAL"/>
+    </property>
+    <property name="gusuarioId" type="string">
+      <column length="5" name="GUSUARIO_ID"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="banco" type="string">
+      <column length="200" name="BANCO"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

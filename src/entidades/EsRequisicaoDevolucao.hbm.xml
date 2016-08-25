@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.EsRequisicaoDevolucao" optimistic-lock="version" table="ES_REQUISICAO_DEVOLUCAO">
+    <id name="requisicaoDevolucaoId" type="int">
+      <column name="REQUISICAO_DEVOLUCAO_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.EsRequisicao" fetch="select" name="esRequisicao">
+      <column name="REQUISICAO_ID" not-null="true"/>
+    </many-to-one>
+    <property name="data" type="date">
+      <column length="10" name="DATA" not-null="true"/>
+    </property>
+    <property name="hora" type="time">
+      <column length="8" name="HORA" not-null="true"/>
+    </property>
+    <property name="motivo" type="string">
+      <column length="1024" name="MOTIVO" not-null="true"/>
+    </property>
+    <property name="gusuarioId" type="string">
+      <column length="5" name="GUSUARIO_ID" not-null="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

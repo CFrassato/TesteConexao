@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpMedida" optimistic-lock="version" table="CP_MEDIDA">
+    <id name="medidaId" type="int">
+      <column name="MEDIDA_ID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpMedidaCidComp" fetch="select" name="cpMedidaCidComp">
+      <column name="CP_MEDIDA_CID_COMP_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.TceMtMedida" fetch="select" name="tceMtMedida">
+      <column name="TCE_MT_MEDIDA_ID" not-null="true"/>
+    </many-to-one>
+    <property name="medida" type="string">
+      <column length="20" name="MEDIDA" not-null="true"/>
+    </property>
+    <property name="reduzido" type="string">
+      <column length="2" name="REDUZIDO" not-null="true" unique="true"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="inteiro" type="java.lang.Character">
+      <column length="1" name="INTEIRO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpPedidoItems" table="CP_PEDIDO_ITEM">
+      <key>
+        <column name="MEDIDA_ID"/>
+      </key>
+      <one-to-many class="entidades.CpPedidoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRetiradaItems" table="ES_RETIRADA_ITEM">
+      <key>
+        <column name="MEDIDA_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRetiradaItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpMaterials" table="CP_MATERIAL">
+      <key>
+        <column name="MEDIDA_ID"/>
+      </key>
+      <one-to-many class="entidades.CpMaterial"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentoItems" table="ES_RECEBIMENTO_ITEM">
+      <key>
+        <column name="MEDIDA_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimentoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpRqItenses" table="CP_RQ_ITENS">
+      <key>
+        <column name="MEDIDA_ID"/>
+      </key>
+      <one-to-many class="entidades.CpRqItens"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicacaoDiretaItems" table="ES_APLICACAO_DIRETA_ITEM">
+      <key>
+        <column name="MEDIDA_ID"/>
+      </key>
+      <one-to-many class="entidades.EsAplicacaoDiretaItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolicitacaoItems" table="CP_SOLICITACAO_ITEM">
+      <key>
+        <column name="MEDIDA_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSolicitacaoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSoItenses" table="CP_SO_ITENS">
+      <key>
+        <column name="MEDIDA_ID"/>
+      </key>
+      <one-to-many class="entidades.CpSoItens"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRequisicaoItems" table="ES_REQUISICAO_ITEM">
+      <key>
+        <column name="MEDIDA_ID"/>
+      </key>
+      <one-to-many class="entidades.EsRequisicaoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpItems" table="CP_ITEM">
+      <key>
+        <column name="MEDIDA_ID"/>
+      </key>
+      <one-to-many class="entidades.CpItem"/>
+    </set>
+  </class>
+</hibernate-mapping>

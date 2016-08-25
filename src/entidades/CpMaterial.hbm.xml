@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpMaterial" optimistic-lock="version" table="CP_MATERIAL">
+    <id name="codigo" type="int">
+      <column name="CODIGO"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entidades.CpCategoria" fetch="select" name="cpCategoria">
+      <column name="CATEGORIA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpGrupo" fetch="select" name="cpGrupo">
+      <column name="GRUPO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpMedida" fetch="select" name="cpMedida">
+      <column name="MEDIDA_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpSubgrupo" fetch="select" name="cpSubgrupo">
+      <column name="SUBGRUPO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.CpTipoProduto" fetch="select" name="cpTipoProduto">
+      <column name="TIPO_PRODUTO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.EsLocalizacao" fetch="select" name="esLocalizacao">
+      <column name="LOCALIZACAO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.OrNatDesp" fetch="select" name="orNatDesp">
+      <column length="10" name="REDUZIDO"/>
+    </many-to-one>
+    <many-to-one class="entidades.TceMtDesdobramento" fetch="select" name="tceMtDesdobramento">
+      <column length="2" name="ELEMENTO_ID"/>
+      <column length="2" name="SUBELEMENTO_ID"/>
+      <column length="2" name="DESDOBRAMENTO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.TceMtElemento" fetch="select" insert="false" name="tceMtElemento" update="false">
+      <column length="2" name="ELEMENTO_ID"/>
+    </many-to-one>
+    <many-to-one class="entidades.TceMtSubelemento" fetch="select" insert="false" name="tceMtSubelemento" update="false">
+      <column length="2" name="ELEMENTO_ID"/>
+      <column length="2" name="SUBELEMENTO_ID"/>
+    </many-to-one>
+    <property name="nome" type="string">
+      <column length="0" name="NOME"/>
+    </property>
+    <property name="nomeAux" type="string">
+      <column length="2039" name="NOME_AUX" not-null="true"/>
+    </property>
+    <property name="tipo" type="char">
+      <column length="1" name="TIPO" not-null="true"/>
+    </property>
+    <property name="codigoExt" type="java.lang.Integer">
+      <column name="CODIGO_EXT"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <property name="referencia" type="string">
+      <column length="30" name="REFERENCIA"/>
+    </property>
+    <property name="cadastro" type="date">
+      <column length="10" name="CADASTRO"/>
+    </property>
+    <property name="obs" type="string">
+      <column length="40" name="OBS"/>
+    </property>
+    <property name="codAuxiliar" type="java.lang.Integer">
+      <column name="COD_AUXILIAR"/>
+    </property>
+    <property name="localizacao" type="string">
+      <column length="20" name="LOCALIZACAO"/>
+    </property>
+    <property name="codBarras" type="string">
+      <column length="20" name="COD_BARRAS"/>
+    </property>
+    <property name="desativado" type="string">
+      <column length="1" name="DESATIVADO"/>
+    </property>
+    <property name="gusuarioId" type="string">
+      <column length="5" name="GUSUARIO_ID"/>
+    </property>
+    <property name="nomeAnterior" type="string">
+      <column length="2039" name="NOME_ANTERIOR"/>
+    </property>
+    <property name="controlaLote" type="java.lang.Character">
+      <column length="1" name="CONTROLA_LOTE"/>
+    </property>
+    <property name="codigoTce" type="string">
+      <column length="12" name="CODIGO_TCE"/>
+    </property>
+    <property name="importadoTce" type="java.lang.Character">
+      <column length="1" name="IMPORTADO_TCE"/>
+    </property>
+    <property name="tpMaterialTce" type="java.lang.Integer">
+      <column name="TP_MATERIAL_TCE"/>
+    </property>
+    <property name="remume" type="java.lang.Character">
+      <column length="1" name="REMUME"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="esRetiradaItems" table="ES_RETIRADA_ITEM">
+      <key>
+        <column name="MATERIAL_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsRetiradaItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpItems" table="CP_ITEM">
+      <key>
+        <column name="MATERIAL_ID"/>
+      </key>
+      <one-to-many class="entidades.CpItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esAplicacaoDiretaItems" table="ES_APLICACAO_DIRETA_ITEM">
+      <key>
+        <column name="MATERIAL_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsAplicacaoDiretaItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRecebimentoItems" table="ES_RECEBIMENTO_ITEM">
+      <key>
+        <column name="MATERIAL_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsRecebimentoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolicitacaoItems" table="CP_SOLICITACAO_ITEM">
+      <key>
+        <column name="CODIGO" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpSolicitacaoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esRequisicaoItems" table="ES_REQUISICAO_ITEM">
+      <key>
+        <column name="MATERIAL_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsRequisicaoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esLoteRemedios" table="ES_LOTE_REMEDIO">
+      <key>
+        <column name="MATERIAL_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsLoteRemedio"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcCombDisps" table="LC_COMB_DISP">
+      <key>
+        <column name="COD_MATERIAL"/>
+      </key>
+      <one-to-many class="entidades.LcCombDisp"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpPedidoItems" table="CP_PEDIDO_ITEM">
+      <key>
+        <column name="CODIGO" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpPedidoItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esInventarioItems" table="ES_INVENTARIO_ITEM">
+      <key>
+        <column name="MATERIAL_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsInventarioItem"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esLoteRemedioBxes" table="ES_LOTE_REMEDIO_BX">
+      <key>
+        <column name="MATERIAL_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsLoteRemedioBx"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="esMaterialEstocados" table="ES_MATERIAL_ESTOCADO">
+      <key>
+        <column name="MATERIAL_ID" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.EsMaterialEstocado"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSoItenses" table="CP_SO_ITENS">
+      <key>
+        <column name="MATERIAL"/>
+      </key>
+      <one-to-many class="entidades.CpSoItens"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpRqItenses" table="CP_RQ_ITENS">
+      <key>
+        <column name="MATERIAL"/>
+      </key>
+      <one-to-many class="entidades.CpRqItens"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpMaterialNatDesps" table="CP_MATERIAL_NAT_DESP">
+      <key>
+        <column name="CODIGO" not-null="true"/>
+      </key>
+      <one-to-many class="entidades.CpMaterialNatDesp"/>
+    </set>
+  </class>
+</hibernate-mapping>

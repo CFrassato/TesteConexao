@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/08/2016 16:42:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="entidades.CpCconsumo" optimistic-lock="version" table="CP_CCONSUMO">
+    <composite-id class="entidades.CpCconsumoId" name="id">
+      <key-property name="secretariaId" type="string">
+        <column length="7" name="SECRETARIA_ID"/>
+      </key-property>
+      <key-property name="codigo" type="int">
+        <column name="CODIGO"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="entidades.CpSecretaria" fetch="select" insert="false" name="cpSecretaria" update="false">
+      <column length="7" name="SECRETARIA_ID" not-null="true"/>
+    </many-to-one>
+    <property name="nome" type="string">
+      <column length="45" name="NOME" not-null="true"/>
+    </property>
+    <property name="localiza" type="string">
+      <column length="45" name="LOCALIZA"/>
+    </property>
+    <property name="endereco" type="string">
+      <column length="45" name="ENDERECO"/>
+    </property>
+    <property name="responsa" type="string">
+      <column length="45" name="RESPONSA"/>
+    </property>
+    <property name="srRecno" type="long">
+      <column name="SR_RECNO" not-null="true" precision="15" scale="0" unique="true"/>
+    </property>
+    <property name="gacesso" type="timestamp">
+      <column length="19" name="GACESSO"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cpRequisis" table="CP_REQUISI">
+      <key>
+        <column length="7" name="SECRETARIA"/>
+        <column name="CCONSUMO"/>
+      </key>
+      <one-to-many class="entidades.CpRequisi"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cpSolMats" table="CP_SOL_MAT">
+      <key>
+        <column length="7" name="SECRETARIA" not-null="true"/>
+        <column name="CCONSUMO"/>
+      </key>
+      <one-to-many class="entidades.CpSolMat"/>
+    </set>
+  </class>
+</hibernate-mapping>
