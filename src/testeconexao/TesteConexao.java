@@ -5,6 +5,11 @@
  */
 package testeconexao;
 
+
+ /* import da minha tabela*/
+import util.HibernateUtil;  // import da classe util esta classe garante que terá apenas uma sessão aberta no seus sistema com isso temos melhoria de desenpenho no programa
+import org.hibernate.Session; //import para uso do Session no hibernate
+
 /**
  *
  * @author CJF
@@ -16,6 +21,8 @@ public class TesteConexao {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-    }
+        Session conexao = HibernateUtil.getSessionFactory().getCurrentSession();
+
     
+}
 }
